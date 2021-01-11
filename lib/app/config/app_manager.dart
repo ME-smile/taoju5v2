@@ -2,11 +2,12 @@
  * @Description: AppManager
  * @Author: iamsmiling
  * @Date: 2020-12-28 22:02:49
- * @LastEditTime: 2020-12-28 22:06:14
+ * @LastEditTime: 2021-01-09 20:29:22
  */
 
 import 'dart:io';
 
+import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class AppManager {
@@ -69,5 +70,11 @@ abstract class AppManager {
     //删除缓存目录
     await delDir(tempDir);
     await loadCache();
+  }
+
+  static Future<String> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    return version;
   }
 }

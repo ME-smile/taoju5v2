@@ -2,15 +2,20 @@
  * @Description: CartBinding
  * @Author: iamsmiling
  * @Date: 2020-12-28 10:29:52
- * @LastEditTime: 2020-12-28 10:31:35
+ * @LastEditTime: 2021-01-06 22:33:59
  */
 
 import 'package:get/get.dart';
-import 'package:taojuwu/app/ui/pages/product/cart/cart_controller.dart';
+import 'package:taojuwu/app/domain/model/product/product_tab_model.dart';
+import 'package:taojuwu/app/ui/pages/product/cart/cart_list_controller.dart';
 
 class CartBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => CartController());
+    Get.lazyPut(() => CartListParentController());
+
+    for (ProductTabModel tab in Get.find<CartListParentController>().tabList) {
+      Get.lazyPut(() => CartListController(), tag: tab.name);
+    }
   }
 }

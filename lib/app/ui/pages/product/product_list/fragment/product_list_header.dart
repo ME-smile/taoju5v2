@@ -2,12 +2,13 @@
  * @Description: 商品列表页面头部
  * @Author: iamsmiling
  * @Date: 2020-12-25 13:31:14
- * @LastEditTime: 2020-12-25 17:03:28
+ * @LastEditTime: 2021-01-08 12:54:47
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/config/app_config.dart';
+import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/ui/widgets/common/button/x_rotation_arrow.dart';
 
 import '../product_list_controller.dart';
@@ -19,6 +20,9 @@ class ProductListHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).primaryColor,
+      padding: EdgeInsets.symmetric(
+        horizontal: XDimens.gap32,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -27,6 +31,7 @@ class ProductListHeader extends StatelessWidget {
               return Row(
                 children: [
                   Container(
+                    padding: EdgeInsets.only(right: XDimens.gap16),
                     child: Image.asset(
                         AppConfig.assetImagePrefixPath + "grid_mode.png"),
                   ),
@@ -38,14 +43,17 @@ class ProductListHeader extends StatelessWidget {
               );
             },
           ),
-          GetBuilder<ProductListController>(
+          GetBuilder<ProductListParentController>(
             id: "sort",
             builder: (_) {
               return Row(
                 children: [
-                  XRotationArrow(
-                    label: _.sortModel.name,
-                    onTap: () => _.sort(context),
+                  Padding(
+                    padding: EdgeInsets.only(right: XDimens.gap16),
+                    child: XRotationArrow(
+                      label: _.sortName,
+                      onTap: () => _.sort(context),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () => _.filter(context),

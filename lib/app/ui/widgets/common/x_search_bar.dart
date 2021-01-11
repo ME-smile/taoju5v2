@@ -2,7 +2,7 @@
  * @Description: 搜索
  * @Author: iamsmiling
  * @Date: 2020-12-25 13:32:49
- * @LastEditTime: 2020-12-25 16:14:58
+ * @LastEditTime: 2021-01-07 15:10:03
  */
 
 import 'package:flutter/material.dart';
@@ -52,10 +52,10 @@ class XSearchBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback onCancel;
 
   // 输入框内容改变
-  final ValueChanged onChanged;
+  final ValueChanged<String> onChanged;
 
   // 点击键盘搜索
-  final ValueChanged onSearch;
+  final ValueChanged<String> onSearch;
 
   final PreferredSizeWidget bottom;
 
@@ -63,7 +63,7 @@ class XSearchBar extends StatefulWidget implements PreferredSizeWidget {
   _XSearchBarState createState() => _XSearchBarState();
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(108);
 }
 
 class _XSearchBarState extends State<XSearchBar> {

@@ -2,21 +2,34 @@
  * @Description: 商品详情数据模型
  * @Author: iamsmiling
  * @Date: 2020-12-21 14:44:38
- * @LastEditTime: 2020-12-25 14:11:47
+ * @LastEditTime: 2021-01-09 19:15:38
  */
 
 import 'package:taojuwu/app/domain/model/product/product_model.dart';
 import 'package:taojuwu/app/utils/json_convert_kit.dart';
 
+import 'design_product_model.dart';
+
 class ProductDetailModelWrapper {
   ProductDetailModel detailModel;
-  List<ProductModel> associatedProductList;
+  List<ProductModel> mixedProductList;
   List<ProductModel> recommendedProductList;
 
+  ///场景推荐
+  List<DesignProductModel> sceneDesignProductList;
+
+  ///软装方案
+  List<DesignProductModel> softDesignProductList;
   ProductDetailModelWrapper.fromJson(Map json) {
     detailModel = ProductDetailModel.fromJson(json['goods_detail']);
-    associatedProductList = JsonConvertKit.asList(json["related_goods"])
+    mixedProductList = JsonConvertKit.asList(json["related_goods"])
         .map((e) => ProductModel.fromJson(e))
+        .toList();
+    sceneDesignProductList = JsonConvertKit.asList(json["scenes_list"])
+        .map((e) => DesignProductModel.fromJson(e))
+        .toList();
+    softDesignProductList = JsonConvertKit.asList(json["soft_project_list"])
+        .map((e) => DesignProductModel.fromJson(e))
         .toList();
     recommendedProductList = JsonConvertKit.asList(json["referrals_goods"])
         .map((e) => ProductModel.fromJson(e))
@@ -27,6 +40,7 @@ class ProductDetailModelWrapper {
 class ProductDetailModel {
   int id;
   String name;
+  String fullName;
   int shopId;
   int isCollect;
 
@@ -58,6 +72,7 @@ class ProductDetailModel {
   ProductDetailModel.fromJson(Map json) {
     id = json['goods_id'];
     name = json['goods_name'];
+    fullName = json['show_name'];
     shopId = json['shop_id'];
     isCollect = json['is_collect'];
     type = json['goods_type'];
@@ -67,8 +82,9 @@ class ProductDetailModel {
     imgList = JsonConvertKit.asList(json['goods_img_list'])
         .map((e) => JsonConvertKit.getValueByKey(e, 'pic_cover_big').toString())
         .toList();
-    cover = json['image'] ??
-        JsonConvertKit.getValueByKey(json['picture_info'], 'pic_cover_big');
+    cover = JsonConvertKit.asWebUrl(json['image'] ??
+        JsonConvertKit.getValueByKey(json['picture_info'], 'pic_cover_big') ??
+        imgList?.first);
     infoModelList = JsonConvertKit.asList(json['goods_attribute_list'])
         .map((e) => ProductMaterialInfoModel.fromJson(e))
         ?.toList();

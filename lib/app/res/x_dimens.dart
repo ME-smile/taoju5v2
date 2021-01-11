@@ -2,7 +2,7 @@
  * @Description: 间距字体大小相关
  * @Author: iamsmiling
  * @Date: 2020-12-16 11:05:02
- * @LastEditTime: 2020-12-23 17:04:57
+ * @LastEditTime: 2021-01-08 11:24:15
  */
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,6 +19,8 @@ class XDimens {
   static double sp32 = 32.sp;
 
   static double sp28 = 28.sp;
+
+  static double sp30 = 30.sp;
 
   static double sp26 = 26.sp;
 

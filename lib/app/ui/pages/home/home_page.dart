@@ -2,12 +2,14 @@
  * @Description: 首页
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:19:50
- * @LastEditTime: 2020-12-28 16:52:37
+ * @LastEditTime: 2021-01-10 15:32:59
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
+import 'package:taojuwu/app/ui/dialog/auth.dart';
+import 'package:taojuwu/app/ui/dialog/reauth.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -38,6 +40,13 @@ class HomePage extends StatelessWidget {
               child: Text("设置页面")),
           TextButton(
               onPressed: () => Get.toNamed(AppRoutes.login), child: Text("登录")),
+          TextButton(
+              onPressed: () => Get.toNamed(AppRoutes.dashBoard),
+              child: Text("去数据中心")),
+          TextButton(
+              onPressed: () => showAuthDialog(context), child: Text("授权")),
+          TextButton(
+              onPressed: () => showReauthDialog(context), child: Text("二次授权"))
         ],
       ),
     );

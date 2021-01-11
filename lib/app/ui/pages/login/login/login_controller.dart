@@ -2,7 +2,7 @@
  * @Description: 登录控制器
  * @Author: iamsmiling
  * @Date: 2020-12-28 16:08:14
- * @LastEditTime: 2020-12-30 16:57:14
+ * @LastEditTime: 2021-01-04 16:47:49
  */
 
 import 'dart:convert';
@@ -39,6 +39,7 @@ class LoginController extends GetxController {
     return _currentStrategy.login(params: params).then((UserInfoModel model) {
       ///刷新dio中的token
       XDio().refreshToken(model.token);
+      save(model);
 
       ///页面跳转
       Get.offNamed(AppRoutes.home);

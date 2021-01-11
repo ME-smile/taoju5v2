@@ -2,11 +2,12 @@
  * @Description: app
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:22:15
- * @LastEditTime: 2020-12-28 22:01:26
+ * @LastEditTime: 2021-01-09 18:52:03
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:taojuwu/app/delegate/cupertino_localization_delegate.dart';
 import 'package:taojuwu/app/res/x_theme.dart';

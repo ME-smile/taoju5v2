@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2020-12-18 16:16:31
- * @LastEditTime: 2020-12-28 16:41:15
+ * @LastEditTime: 2021-01-10 13:26:15
  */
 part of 'app_pages.dart';
 
@@ -13,7 +13,17 @@ abstract class AppRoutes {
 
   static const productList = '/productList';
 
+  static const selectableProductList = '/selectableProductList';
+
   static const productDetail = '/productDetail';
+
+  static const productDetailV2 = '/productDetailV2';
+
+  static const sceneProductDetail = '/sceneProductDetail';
+
+  static const softProductDetail = '/softProductDetail';
+
+  static const productQuotation = '/productQuotation';
 
   static const editMeasureData = '/editMeasureData';
 
@@ -33,5 +43,19 @@ abstract class AppRoutes {
 
   static const setting = '/setting';
 
+  static const feedback = '/feedback';
+
+  static const appVersion = '/appVersion';
+
   static const cart = '/cart';
+
+  static const dashBoard = '/dashboard';
+
+  static const search = '/search';
+
+  static const collection = '/collection';
+
+  static const afterSell = '/afterSell';
+
+  static const userProtocol = '/userProtocol';
 }

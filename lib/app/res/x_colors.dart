@@ -2,14 +2,14 @@
  * @Description:app颜色定义
  * @Author: iamsmiling
  * @Date: 2020-12-16 11:04:32
- * @LastEditTime: 2020-12-25 13:42:57
+ * @LastEditTime: 2021-01-10 15:35:39
  */
 
 import 'package:flutter/material.dart';
 
 class XColors {
   static const Color primaryColor = Colors.white;
-  static const Color scaffoldBgColor = Color(0xFFF5F5F5);
+  static const Color scaffoldBgColor = Color(0xFFF5F5F9);
 
   static const Color foregroundColor = Color(0xFF171717);
 
@@ -50,7 +50,7 @@ class XColors {
   ///连接文字颜色
   static const Color linkTextColor = Color(0xFF388FFF);
 
-  static const Color outlineBorderColor = Color(0xFFCBCBCB);
+  static const Color outlineBorderColor = Color(0xFF464646);
 
   static const Color cardColor = Color(0xFFF3F4F5);
 
@@ -82,4 +82,13 @@ class XColors {
 
   //提醒警告颜色
   static const Color warningColor = Color(0xFFE02020);
+
+  ///
+  static const Color weightGreyTextColor = Color(0xFF636363);
+
+  ///淡蓝色
+  static const Color lightBlueColor = Color(0xFFF0F5FF);
+
+  ///蓝色字体
+  static const Color blueTextColor = Color(0xFF3A79E7);
 }

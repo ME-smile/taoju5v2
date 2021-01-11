@@ -2,7 +2,7 @@
  * @Description: 主题相关配置
  * @Author: iamsmiling
  * @Date: 2020-12-23 17:07:11
- * @LastEditTime: 2020-12-25 11:22:51
+ * @LastEditTime: 2021-01-10 17:27:12
  */
 
 import 'package:flutter/cupertino.dart';
@@ -49,22 +49,28 @@ class XTheme {
               borderRadius: BorderRadius.all(Radius.circular(8)))),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-              textStyle:
-                  MaterialStateProperty.all(TextStyle(fontSize: XDimens.sp28)),
-              backgroundColor: MaterialStateProperty.all(XColors.buttonColor),
-              minimumSize: MaterialStateProperty.all(
-                  Size(XDimens.minW172, XDimens.minH64)))),
+        textStyle: MaterialStateProperty.all(
+            TextStyle(color: XColors.primaryColor, fontSize: XDimens.sp28)),
+        backgroundColor: MaterialStateProperty.all(XColors.buttonColor),
+        // foregroundColor: MaterialStateProperty.all(XColors.buttonColor),
+        // overlayColor: MaterialStateProperty.all(XColors.buttonColor),
+        // minimumSize: MaterialStateProperty.all(
+        //     Size(XDimens.minW172, XDimens.minH64))
+      )),
       outlinedButtonTheme: OutlinedButtonThemeData(
           style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all(
-                  Size(XDimens.minW172, XDimens.minH64)),
-              textStyle:
-                  MaterialStateProperty.all(TextStyle(fontSize: XDimens.sp28)),
+              foregroundColor: MaterialStateProperty.all(XColors.textColor),
+              // minimumSize: MaterialStateProperty.all(
+              //     Size(XDimens.minW172, XDimens.minH64)),
+              textStyle: MaterialStateProperty.all(
+                  TextStyle(fontSize: XDimens.sp28, color: XColors.textColor)),
               side: MaterialStateProperty.all(
                   BorderSide(color: XColors.outlineBorderColor, width: 1)))),
       textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-        textStyle: MaterialStateProperty.all(TextStyle(fontSize: XDimens.sp28)),
+        foregroundColor: MaterialStateProperty.all(XColors.textColor),
+        textStyle: MaterialStateProperty.all(
+            TextStyle(fontSize: XDimens.sp28, color: XColors.textColor)),
       )),
       inputDecorationTheme: InputDecorationTheme(
           labelStyle: XStyles.inputLabelText,

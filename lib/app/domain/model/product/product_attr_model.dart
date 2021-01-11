@@ -2,18 +2,18 @@
  * @Description:商品属性
  * @Author: iamsmiling
  * @Date: 2020-12-31 14:25:23
- * @LastEditTime: 2020-12-31 18:03:42
+ * @LastEditTime: 2021-01-04 13:27:02
  */
 
 import 'package:taojuwu/app/utils/json_convert_kit.dart';
 
-class ProductAttrModel {
+class ProductAttrAdapterModel {
   int type;
   String key;
   String value;
   double totalPrice;
 
-  ProductAttrModel.fromJson(Map json) {
+  ProductAttrAdapterModel.fromJson(Map json) {
     type = json["type"];
     key = json["attr_category"];
     value = json["attr_name"];

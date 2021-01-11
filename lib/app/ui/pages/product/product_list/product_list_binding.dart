@@ -11,6 +11,6 @@ import 'package:taojuwu/app/ui/pages/product/product_list/product_list_controlle
 class ProductListBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ProductListController());
+    Get.lazyPut(() => ProductListParentController());
   }
 }

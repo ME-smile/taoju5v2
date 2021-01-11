@@ -2,7 +2,7 @@
  * @Description: XCheckButton 带三角边框的按钮
  * @Author: iamsmiling
  * @Date: 2020-12-24 14:24:44
- * @LastEditTime: 2020-12-24 15:32:46
+ * @LastEditTime: 2021-01-05 15:18:04
  */
 import 'package:flutter/material.dart';
 import 'package:taojuwu/app/interface/i_xselectable.dart';

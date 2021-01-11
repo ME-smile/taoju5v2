@@ -2,7 +2,7 @@
  * @Description: 商品详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 14:43:22
- * @LastEditTime: 2020-12-31 09:26:56
+ * @LastEditTime: 2021-01-04 14:04:39
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +74,7 @@ class ProductDetailController extends GetxController {
       "name": detailModel.name,
       "room": selectorController.room.currentOptionName,
       "price": detailModel.price,
-      "attrList": selectorController.attrList,
+      // "attrList": selectorController.attrList,
       "description": "",
       "totalPrice": priceDelegator.totalPrice
     };

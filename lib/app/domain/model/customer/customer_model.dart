@@ -2,10 +2,11 @@
  * @Description: 客户数据模型
  * @Author: iamsmiling
  * @Date: 2020-12-18 17:55:58
- * @LastEditTime: 2020-12-29 14:05:43
+ * @LastEditTime: 2021-01-10 14:40:38
  */
 
 import 'package:azlistview/azlistview.dart';
+import 'package:get/get.dart';
 import 'package:taojuwu/app/utils/json_convert_kit.dart';
 
 class CustomerModelListWrapper {
@@ -31,6 +32,11 @@ class CustomerModelListWrapper {
   }
 }
 
+extension CustomerModelListWrapperKit on CustomerModelListWrapper {
+  List<int> get countList =>
+      [status0Count, status1Count, status2Count, status3Count];
+}
+
 class CustomerModel implements ISuspensionBean {
   String name;
   int id;
@@ -52,6 +58,7 @@ class CustomerModel implements ISuspensionBean {
 
   String avatar;
 
+  int cartCount;
   @override
   String getSuspensionTag() {
     return headWord;
@@ -75,4 +82,8 @@ class CustomerModel implements ISuspensionBean {
   bool isShowSuspension = true;
 
   CustomerModel();
+}
+
+extension CustomerModelKit on CustomerModel {
+  String get tag => GetUtils.isAlphabetOnly(headWord) ? headWord : "#";
 }

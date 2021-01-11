@@ -2,8 +2,9 @@
  * @Description: 窗帘商品属性
  * @Author: iamsmiling
  * @Date: 2020-12-23 10:20:26
- * @LastEditTime: 2020-12-31 14:37:08
+ * @LastEditTime: 2021-01-04 13:58:15
  */
+import 'package:taojuwu/app/domain/model/product/product_adapter_model.dart';
 import 'package:taojuwu/app/interface/i_xselectable.dart';
 import 'package:taojuwu/app/utils/json_convert_kit.dart';
 
@@ -81,6 +82,11 @@ extension CurtainProductAttrModelKit on CurtainProductAttrModel {
         "attr_name": currentOptionName,
         "sub_total": currentOptionPrice
       };
+  ProductAdapterModel adapt() {
+    ProductAdapterModel model = ProductAdapterModel();
+    // model.id = id;
+    return model;
+  }
 }
 
 ///[Curtai['

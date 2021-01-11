@@ -2,7 +2,7 @@
  * @Description: 商品列表数据模型
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:39:17
- * @LastEditTime: 2020-12-30 17:24:20
+ * @LastEditTime: 2021-01-09 19:10:11
  */
 
 import 'package:taojuwu/app/utils/json_convert_kit.dart';
@@ -31,6 +31,7 @@ class ProductModel {
   double marketPrice;
   double price;
   String unit;
+  int picId;
 
   int code;
   ProductModel.fromJson(Map json) {
@@ -40,6 +41,7 @@ class ProductModel {
     code = json["goods_type"];
     marketPrice = JsonConvertKit.asDouble(json['market_price']);
     unit = json["unit"];
+    picId = json["pic_id"];
     price = JsonConvertKit.asDouble(
         (json['price'] ?? json['display_price'] ?? json['market_price']));
   }

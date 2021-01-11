@@ -2,7 +2,7 @@
  * @Description: 基于dio的二次封装
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:34:12
- * @LastEditTime: 2020-12-28 21:09:20
+ * @LastEditTime: 2021-01-03 15:49:01
  */
 
 import 'dart:convert';
@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:taojuwu/app/config/net_config.dart';
 import 'package:taojuwu/app/storage/storage_manager.dart';
+import 'package:taojuwu/app/utils/json_convert_kit.dart';
 
 class XDio {
   // 私有构造函数
@@ -75,7 +76,7 @@ class BaseResponse {
   bool get isValid => code == 0;
 
   BaseResponse.fromJson(Map json) {
-    code = json['code'];
+    code = JsonConvertKit.asInt(json['code']);
     data = json['data'];
     message = json['message'];
   }

@@ -2,7 +2,7 @@
  * @Description:商品详情头部
  * @Author: iamsmiling
  * @Date: 2020-12-24 10:12:26
- * @LastEditTime: 2020-12-25 14:01:13
+ * @LastEditTime: 2021-01-07 22:26:27
  */
 
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class ProductDetailHeader extends GetView<ProductDetailController> {
             children: [Text(product.name)],
           ),
           Container(
-            child: Text('${product.price}'),
+            child: Text('¥${product.price.toStringAsFixed(2)}'),
           )
         ],
       ),

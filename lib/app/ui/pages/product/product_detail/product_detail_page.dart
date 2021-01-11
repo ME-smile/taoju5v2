@@ -2,7 +2,7 @@
  * @Description: 商品详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 14:44:38
- * @LastEditTime: 2020-12-29 13:22:24
+ * @LastEditTime: 2021-01-05 09:22:06
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,25 +57,6 @@ class ProductDetailPage extends StatelessWidget {
               ),
               bottomNavigationBar: ProductDetailFooter(),
             );
-            // return Scaffold(
-            //   appBar: AppBar(
-            //     title: Text("商品详情"),
-            //   ),
-            //   body: Column(
-            //     children: [
-            //       Text(
-            //           "----------------------------布艺帘----------------------------"),
-            //       GauzeCurtainProductAttrsSelectorCard(),
-            //       FabircCurtainProductAttrsSelectorCard(),
-            //       Text(
-            //           "----------------------------窗纱----------------------------"),
-            //       GauzeCurtainProductAttrsSelectorCard(),
-            //       Text(
-            //           "----------------------------卷帘----------------------------"),
-            //       RollingCurtainProductAttrsSelectorCard(),
-            //     ],
-            //   ),
-            // );
           });
     });
   }

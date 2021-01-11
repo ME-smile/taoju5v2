@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2020-12-21 17:28:37
- * @LastEditTime: 2020-12-22 15:45:06
+ * @LastEditTime: 2021-01-11 14:27:00
  */
 import 'package:get/get.dart';
 import 'package:taojuwu/app/domain/model/customer/customer_detail_model.dart';
@@ -36,11 +36,11 @@ class CustomerDetailController extends GetxController {
 }
 
 extension CustomerAddressModelKit on CustomerAddressModel {
-  String get concreteAddress => GetUtils.isNullOrBlank(provinceName)
+  String get concreteAddress => GetUtils.isNullOrBlank(address?.address)
       ? ""
-      : "$provinceName/$cityName/$districtName${GetUtils.isNullOrBlank(detailAddress) ? "" : detailAddress}";
+      : "${address?.address}${GetUtils.isNullOrBlank(detailAddress) ? "" : detailAddress}";
 }
 
 extension CustomerDetailModelKit on CustomerDetailModel {
-  String get concreteAddress => address.concreteAddress;
+  String get concreteAddress => address?.concreteAddress;
 }

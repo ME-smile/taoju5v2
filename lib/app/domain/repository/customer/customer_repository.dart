@@ -2,7 +2,7 @@
  * @Description: 客户相关
  * @Author: iamsmiling
  * @Date: 2020-12-21 17:11:21
- * @LastEditTime: 2020-12-28 21:37:57
+ * @LastEditTime: 2021-01-07 16:19:06
  */
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -30,6 +30,17 @@ class CustomerRepository {
         .then((BaseResponse response) {
       if (response.isValid) return CustomerDetailModel.fromJson(response.data);
       throw Future.error(response.message);
+    }).catchError((err) {
+      throw err;
+    });
+  }
+
+  Future editCustomer({Map params}) {
+    return _api
+        .customerList("/api/client/add", params: params)
+        .then((BaseResponse response) {
+      if (response.isValid) return CustomerDetailModel.fromJson(response.data);
+      throw EasyLoading.showError(response.message);
     }).catchError((err) {
       throw err;
     });

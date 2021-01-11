@@ -2,7 +2,7 @@
  * @Description: json转换工具类
  * @Author: iamsmiling
  * @Date: 2020-12-21 09:59:08
- * @LastEditTime: 2020-12-23 13:34:34
+ * @LastEditTime: 2021-01-10 20:41:49
  */
 
 import 'package:taojuwu/app/config/net_config.dart';
@@ -38,7 +38,7 @@ abstract class JsonConvertKit {
     if (GetUtils.isNullOrBlank(path)) return path;
     if (GetUtils.isImage(path)) {
       if (GetUtils.hasMatch(path, "(http|https)")) return path;
-      return NetConfig.baseUrl + path;
+      return NetConfig.baseUrl + (path.startsWith("/") ? path : "/$path");
     }
     return path;
   }
@@ -64,7 +64,7 @@ abstract class JsonConvertKit {
   }
 
   static DateTime getDateTimeFromMillseconds(int mills) {
-    return DateTime.fromMillisecondsSinceEpoch(mills * 1000);
+    return DateTime.fromMillisecondsSinceEpoch((mills ?? 0) * 1000);
   }
 
   static String formatDateTime(DateTime dateTime,
@@ -74,6 +74,10 @@ abstract class JsonConvertKit {
 
   static bool isNullOrZero(dynamic value) {
     return GetUtils.isNull(value) || value == 0;
+  }
+
+  static bool isNullOrBlank(dynamic value) {
+    return GetUtils.isNullOrBlank(value) || value == 0;
   }
 
   static List<IXSelectable> selectFirstItem(List<IXSelectable> list) {
