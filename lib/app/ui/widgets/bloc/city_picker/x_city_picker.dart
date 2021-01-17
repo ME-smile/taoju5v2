@@ -2,7 +2,7 @@
  * @Description: 城市选择
  * @Author: iamsmiling
  * @Date: 2020-11-28 23:11:50
- * @LastEditTime: 2021-01-11 14:38:47
+ * @LastEditTime: 2021-01-17 23:15:22
  */
 
 import 'dart:async';
@@ -174,6 +174,16 @@ class AddressModel {
       {@required this.provicne, @required this.city, @required this.district});
 
   AddressModel.fromId(int provinceId, int cityId, int districtId) {
+    if (provinceId == 0 || provinceId == null) {
+      provinceId = 1;
+    }
+    if (cityId == 0 || cityId == null) {
+      cityId = queryCityList(provinceId)?.first["city_id"];
+    }
+    if (districtId == 0 || districtId == null) {
+      districtId = queryDistrictList(cityId)?.first["district_id"];
+    }
+
     provicne =
         ProvicneEntity(id: provinceId, name: getProvinceNameById(provinceId));
     city = CityEntity(id: cityId, name: getCityNameById(provinceId, cityId));
@@ -461,7 +471,7 @@ class __PickerViewState extends State<_PickerView> {
             itemBuilder: (BuildContext context, int index) {
               return Center(
                 child: Text(widget.itemList[index][widget.field],
-                    style: TextStyle(fontSize: 18)),
+                    style: TextStyle(fontSize: 17)),
               );
             }),
       ),

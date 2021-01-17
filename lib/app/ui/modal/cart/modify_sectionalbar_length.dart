@@ -2,12 +2,11 @@
  * @Description: 修改型材长度
  * @Author: iamsmiling
  * @Date: 2021-01-15 21:00:11
- * @LastEditTime: 2021-01-15 22:28:20
+ * @LastEditTime: 2021-01-17 22:50:59
  */
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taojuwu/app/domain/model/product/cart_product_model.dart';
 import 'package:taojuwu/app/domain/model/product/sectionalbar_product_adapter_model.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/ui/modal/base/x_base_modal.dart';

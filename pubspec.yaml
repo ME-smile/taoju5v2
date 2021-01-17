@@ -56,6 +56,7 @@ dependencies:
   # install_plugin: ^2.0.1
   fair: ^0.2.0
   flare_flutter: ^2.0.6
+  fluwx: ^2.5.0+1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -83,6 +84,7 @@ flutter:
     - assets/images/curtain/
     - assets/bundles/lib_home_page.fair.json
     - assets/flrs/
+    - assets/data/curtain_mode.json
   fonts:
   # - family: Quicksand
   #   fonts:

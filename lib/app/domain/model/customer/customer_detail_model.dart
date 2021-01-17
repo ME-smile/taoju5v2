@@ -2,7 +2,7 @@
  * @Description: 用户信息详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 16:34:44
- * @LastEditTime: 2021-01-16 16:15:58
+ * @LastEditTime: 2021-01-17 11:35:21
  */
 import 'package:get/get.dart';
 import 'package:taojuwu/app/constants/x_gender.dart';
@@ -75,6 +75,7 @@ class CustomerDetailModel {
         'district': address.address.district.id,
         'gender': getGenderId(gender),
         'address': address.detailAddress ?? '',
+        'consigner': name,
       };
 }
 

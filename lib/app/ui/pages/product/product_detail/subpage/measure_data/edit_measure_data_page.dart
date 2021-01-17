@@ -2,14 +2,17 @@
  * @Description: 填写测装数据
  * @Author: iamsmiling
  * @Date: 2020-12-24 10:20:33
- * @LastEditTime: 2021-01-15 16:19:14
+ * @LastEditTime: 2021-01-17 17:34:05
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/config/app_config.dart';
+import 'package:taojuwu/app/ui/widgets/common/textfield/x_sized_text_field.dart';
 
 import 'edit_measure_data_controller.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditMeasureDataPage extends StatelessWidget {
   const EditMeasureDataPage({Key key}) : super(key: key);
@@ -23,24 +26,35 @@ class EditMeasureDataPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Image.asset(AppConfig.assetImagePrefixPath + _.mainImg),
-            TextFormField(
-              initialValue: _.width,
-              onChanged: (String text) {
-                _.width = text;
-              },
+            SizedBox(
+                height: 480.w,
+                child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Image.asset(
+                        AppConfig.assetImagePrefixPath + _.mainImg))),
+            Row(
+              children: [
+                Text("宽(cm):"),
+                XSizedTextField(
+                  width: 256.w,
+                ),
+              ],
             ),
-            TextFormField(
-              initialValue: _.height,
-              onChanged: (String text) {
-                _.height = text;
-              },
+            Row(
+              children: [
+                Text("高(cm):"),
+                XSizedTextField(
+                  width: 256.w,
+                ),
+              ],
             ),
-            TextFormField(
-              initialValue: _.groundClearance,
-              onChanged: (String text) {
-                _.groundClearance = text;
-              },
+            Row(
+              children: [
+                Text("离地距离(cm):"),
+                XSizedTextField(
+                  width: 256.w,
+                ),
+              ],
             ),
           ],
         ),

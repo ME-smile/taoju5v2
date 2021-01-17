@@ -2,8 +2,11 @@
  * @Description: sdk管理
  * @Author: iamsmiling
  * @Date: 2020-12-16 10:15:07
- * @LastEditTime: 2020-12-16 10:44:58
+ * @LastEditTime: 2021-01-17 18:23:08
  */
+
+import 'package:taojuwu/app/config/sdk_manager/sdk/bugly_sdk.dart';
+import 'package:taojuwu/app/config/sdk_manager/sdk/wechat_sdk.dart';
 
 import 'i_sdk_initializer.dart';
 
@@ -18,7 +21,7 @@ class SdkManager implements ISdkInitializer {
   SdkManager._();
 
   /// 初始化器列表
-  List<ISdkInitializer> _sdkList = [];
+  List<ISdkInitializer> _sdkList = [BuglySdk(), WeChatSdk()];
   @override
   void init() {
     for (ISdkInitializer initialzer in _sdkList) {

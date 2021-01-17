@@ -2,15 +2,20 @@
  * @Description:商品详情头部
  * @Author: iamsmiling
  * @Date: 2020-12-24 10:12:26
- * @LastEditTime: 2021-01-16 13:16:37
+ * @LastEditTime: 2021-01-17 23:05:05
  */
+
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taojuwu/app/config/app_config.dart';
+import 'package:taojuwu/app/config/net_config.dart';
 import 'package:taojuwu/app/domain/model/product/product_detail_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_type.dart';
 import 'package:taojuwu/app/res/x_colors.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
+import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/product_detail_controller.dart';
 import 'package:taojuwu/app/ui/widgets/bloc/x_share_button.dart';
 
@@ -37,7 +42,14 @@ class ProductDetailHeader extends GetView<ProductDetailController> {
                 style: TextStyle(
                     fontSize: XDimens.sp32, fontWeight: FontWeight.w500),
               ),
-              XShareButton()
+              Visibility(
+                visible: Platform.isAndroid || Platform.isIOS,
+                child: XShareButton(
+                  url: NetConfig.baseUrl +
+                      AppRoutes.productDetail +
+                      "/${controller.id}",
+                ),
+              )
             ],
           ),
           Visibility(

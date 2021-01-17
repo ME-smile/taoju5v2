@@ -149,12 +149,6 @@ class _TickFailPainter extends CustomPainter {
     // path.close();
     canvas.drawPath(path, viewPaint);
 
-    /// 路径动画
-    PathMetrics pathMetrics = path.computeMetrics();
-
-    /// 圆的路径
-    PathMetric circularPathMetric = pathMetrics?.first;
-
     /// 第一个Path是圆、第二个Path是钩
     // if (progress <= 1) {
     //   Path circularExtractPath = circularPathMetric.extractPath(

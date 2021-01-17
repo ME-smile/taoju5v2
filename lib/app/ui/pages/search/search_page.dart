@@ -2,7 +2,7 @@
  * @Description: 搜索页面
  * @Author: iamsmiling
  * @Date: 2021-01-07 14:25:23
- * @LastEditTime: 2021-01-09 23:18:37
+ * @LastEditTime: 2021-01-17 23:33:26
  */
 
 import 'package:flutter/material.dart';
@@ -19,6 +19,8 @@ class SearchPage extends GetView<SearchController> {
       appBar: XSearchBar(
         onSearch: controller.addSearchItem,
         hintText: controller.hintText,
+        bottom: PreferredSize(
+            child: SizedBox.shrink(), preferredSize: Size.fromHeight(0)),
       ),
       body: GetBuilder<SearchController>(
         id: "history",

@@ -2,7 +2,7 @@
  * @Description: 搜索页面controller
  * @Author: iamsmiling
  * @Date: 2021-01-07 14:25:44
- * @LastEditTime: 2021-01-09 23:18:52
+ * @LastEditTime: 2021-01-17 23:27:38
  */
 
 import 'package:get/get.dart';
@@ -30,7 +30,10 @@ class SearchController extends GetxController {
 
   SearchType get type => Get.arguments;
   String get hintText => _searchTip[type];
-  List<String> get historyList => _searchHistory[type]?.toSet()?.toList();
+  List<String> get historyList {
+    if (GetUtils.isNullOrBlank(_searchHistory[type])) return [];
+    return _searchHistory[type]?.toSet()?.toList();
+  }
 
   @override
   void onInit() {

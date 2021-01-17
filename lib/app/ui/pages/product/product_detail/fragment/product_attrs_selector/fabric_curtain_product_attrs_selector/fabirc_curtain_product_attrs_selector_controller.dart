@@ -2,7 +2,7 @@
  * @Description: 布艺帘商品属性
  * @Author: iamsmiling
  * @Date: 2020-12-23 10:00:01
- * @LastEditTime: 2020-12-31 09:55:37
+ * @LastEditTime: 2021-01-17 17:36:08
  */
 
 import 'package:taojuwu/app/domain/model/product/curtain_product_attr_model.dart';

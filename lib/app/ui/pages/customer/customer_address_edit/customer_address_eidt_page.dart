@@ -2,7 +2,7 @@
  * @Description: 填写收货地址页面
  * @Author: iamsmiling
  * @Date: 2020-12-22 11:19:05
- * @LastEditTime: 2021-01-16 15:36:48
+ * @LastEditTime: 2021-01-17 11:32:54
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,8 +93,7 @@ class CustomerAddressEditPage extends GetView<CustomerAddressEditController> {
                     onFuture: () => showXCityPicker(context,
                         addressResult: _.customer?.address?.address)),
                 XLabelTextField(
-                  key: ValueKey(
-                      _.customer?.address?.detailAddress ?? "detailAddress"),
+                  key: ValueKey(_.customer?.address?.addressId ?? "addressId"),
                   label: "门牌号:",
                   hintText: "例：5号楼203室",
                   initialValue: _.customer?.address?.detailAddress,

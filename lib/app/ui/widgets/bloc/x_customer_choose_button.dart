@@ -2,7 +2,7 @@
  * @Description: 选择客户的按钮
  * @Author: iamsmiling
  * @Date: 2020-12-29 13:12:01
- * @LastEditTime: 2021-01-12 17:42:22
+ * @LastEditTime: 2021-01-17 11:55:48
  */
 
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ import 'package:taojuwu/app/ui/pages/home/customer_provider_controller.dart';
 
 class XCustomerChooseButton extends StatelessWidget {
   const XCustomerChooseButton({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CustomerProviderController>(builder: (_) {
@@ -23,7 +24,11 @@ class XCustomerChooseButton extends StatelessWidget {
           onPressed: () => Get.toNamed(AppRoutes.customerEdit + "/1"),
           icon: Image.asset(
               AppConfig.assetImagePrefixPath + "customer_badge.png"),
-          label: Text(_?.name));
+          label: Text(
+            _?.abbrName,
+            maxLines: 1,
+            style: TextStyle(),
+          ));
     });
   }
 }

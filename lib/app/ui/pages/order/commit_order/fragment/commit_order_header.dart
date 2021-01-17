@@ -2,7 +2,7 @@
  * @Description:提交订单头部
  * @Author: iamsmiling
  * @Date: 2021-01-07 22:03:08
- * @LastEditTime: 2021-01-16 16:05:54
+ * @LastEditTime: 2021-01-17 11:17:55
  */
 
 import 'package:flutter/material.dart';
@@ -90,7 +90,12 @@ class CommitOrderHeader extends GetView<CommitOrderController> {
                                     ),
                                     Row(
                                       children: [
-                                        Text("收货地址:"),
+                                        Text(
+                                          "收货地址:",
+                                          style: TextStyle(
+                                              fontSize: XDimens.sp26,
+                                              color: XColors.tipColor),
+                                        ),
                                         Text(
                                           controller.customer?.concreteAddress,
                                           style: TextStyle(
@@ -156,8 +161,11 @@ class CommitOrderHeader extends GetView<CommitOrderController> {
                         ],
                       ),
                       Text("门店信息:${controller.user.shopName}",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: XDimens.sp26, color: XColors.tipColor))
+                            fontSize: XDimens.sp26,
+                            color: XColors.tipColor,
+                          ))
                     ],
                   ),
                 )

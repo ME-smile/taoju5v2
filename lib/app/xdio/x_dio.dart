@@ -2,7 +2,7 @@
  * @Description: 基于dio的二次封装
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:34:12
- * @LastEditTime: 2021-01-03 15:49:01
+ * @LastEditTime: 2021-01-17 11:45:10
  */
 
 import 'dart:convert';
@@ -12,6 +12,7 @@ import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:taojuwu/app/config/net_config.dart';
 import 'package:taojuwu/app/storage/storage_manager.dart';
 import 'package:taojuwu/app/utils/json_kit.dart';
+import 'package:taojuwu/app/utils/x_logger.dart';
 
 class XDio {
   // 私有构造函数
@@ -34,10 +35,18 @@ class XDio {
           return error;
         },
         onRequest: ((RequestOptions options) {
+          print(
+              "--------------请求地址----------------\n:${options.baseUrl + options.path}");
+          XLogger.v(
+              "====================query请求参数===========================\n${options.queryParameters}");
+          XLogger.v(
+              "+++++++++++++++++++++++++formData参数+++++++++++++++++++++++++\n${options.data}");
           return options;
         }),
         onResponse: (Response response) {
           response.data = jsonDecode(response.toString());
+          XLogger.e(
+              "*******************************请求结果*******************************\n${response.data}");
           return response;
         },
       ))

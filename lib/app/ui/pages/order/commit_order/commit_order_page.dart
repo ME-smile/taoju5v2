@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:taojuwu/app/res/x_colors.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
-import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/order/commit_order/commit_order_controller.dart';
 import 'package:taojuwu/app/ui/pages/order/commit_order/fragment/commit_order_body.dart';
 import 'package:taojuwu/app/ui/widgets/bloc/x_customer_choose_button.dart';

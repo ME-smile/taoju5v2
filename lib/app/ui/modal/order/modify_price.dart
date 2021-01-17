@@ -2,7 +2,7 @@
  * @Description: 修改价格
  * @Author: iamsmiling
  * @Date: 2021-01-13 15:47:16
- * @LastEditTime: 2021-01-14 17:45:00
+ * @LastEditTime: 2021-01-17 23:18:29
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +37,7 @@ class _ModifyOrderPriceModal extends StatelessWidget {
           builder: (BuildContext context) {
             return Scaffold(
               backgroundColor: Get.theme.primaryColor,
+              resizeToAvoidBottomInset: false,
               body: SizedBox.expand(
                 child: Container(
                   color: Get.theme.primaryColor,

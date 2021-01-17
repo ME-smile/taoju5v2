@@ -2,7 +2,7 @@
  * @Description: 搜索
  * @Author: iamsmiling
  * @Date: 2020-12-25 13:32:49
- * @LastEditTime: 2021-01-07 15:10:03
+ * @LastEditTime: 2021-01-17 23:43:54
  */
 
 import 'package:flutter/material.dart';
@@ -100,6 +100,13 @@ class _XSearchBarState extends State<XSearchBar> {
     if (widget.onChanged != null) widget.onChanged(value);
   }
 
+  void dispose() {
+    FocusManager.instance.primaryFocus.unfocus();
+    _controller?.dispose();
+    _focusNode?.dispose();
+    super.dispose();
+  }
+
   Widget _suffix() {
     if (_controller.text.isNotEmpty) {
       return GestureDetector(
@@ -176,6 +183,8 @@ class _XSearchBarState extends State<XSearchBar> {
                 controller: _controller,
                 decoration: InputDecoration(
                   border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
                   isDense: true,
                   hintText: widget.hintText ?? '请输入关键字',
                   hintStyle: TextStyle(

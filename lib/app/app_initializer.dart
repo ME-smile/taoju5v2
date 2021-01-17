@@ -2,7 +2,7 @@
  * @Description: APP初始化配置
  * @Author: iamsmiling
  * @Date: 2021-01-12 22:34:48
- * @LastEditTime: 2021-01-13 15:39:37
+ * @LastEditTime: 2021-01-17 23:11:46
  */
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +15,13 @@ import 'config/sdk_manager/sdk_manager.dart';
 
 abstract class AppInitializer {
   static Future init() async {
-    _initEasyloading();
-    _initSDK();
-    _initWidgetBinding();
-    _initSystemUI();
+    await _initWidgetBinding();
+
+    await _initSDK();
+
     await _initStorage();
+    _initSystemUI();
+    _initEasyloading();
   }
 
   static void _initEasyloading() {
@@ -38,7 +40,7 @@ abstract class AppInitializer {
     EasyLoading.instance.displayDuration = const Duration(milliseconds: 500);
   }
 
-  static void _initSDK() {
+  static Future _initSDK() async {
     SdkManager().init();
   }
 
@@ -46,7 +48,7 @@ abstract class AppInitializer {
     await StorageManager().init();
   }
 
-  static void _initWidgetBinding() {
+  static Future _initWidgetBinding() async {
     WidgetsFlutterBinding.ensureInitialized();
   }
 
