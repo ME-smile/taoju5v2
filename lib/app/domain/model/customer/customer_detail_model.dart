@@ -2,12 +2,13 @@
  * @Description: 用户信息详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 16:34:44
- * @LastEditTime: 2021-01-11 14:46:57
+ * @LastEditTime: 2021-01-16 16:15:58
  */
 import 'package:get/get.dart';
 import 'package:taojuwu/app/constants/x_gender.dart';
+import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/widgets/bloc/city_picker/x_city_picker.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 String getCustomerType(int code) {
   Map map = {0: '初谈客户', 1: '意向客户', 2: '跟进客户', 3: '成交客户'};
@@ -25,7 +26,23 @@ class CustomerDetailModel {
   String type;
   CustomerAddressModel address;
   XGender gender;
-  CustomerDetailModel();
+  List<CustomerDetailKongoModel> kongoList = [
+    CustomerDetailKongoModel(
+        icon: "customer_collection.png", title: "收藏夹", onTap: () {}),
+    CustomerDetailKongoModel(
+        icon: "customer_cart.png", title: "购物车", onTap: () {}),
+    CustomerDetailKongoModel(
+        icon: "customer_order.png",
+        title: "订单",
+        onTap: () => Get.toNamed(AppRoutes.orderList)),
+    CustomerDetailKongoModel(
+        icon: "customer_cart.png", title: "退款/售后", onTap: () {}),
+  ];
+  CustomerDetailModel() {
+    gender = XGender.unknown;
+    address = CustomerAddressModel();
+  }
+
   CustomerDetailModel.fromJson(Map json) {
     id = "${json['id']}";
     name = json['client_name'];
@@ -33,11 +50,11 @@ class CustomerDetailModel {
     type = getCustomerType(json["client_type"]);
     age = "${json['client_age']}";
     wx = json['client_wx'];
-    enterTime = JsonConvertKit.getDateTimeFromMillseconds(
+    enterTime = JsonKit.getDateTimeFromMillseconds(
         GetUtils.isNullOrBlank(json['enter_time']) ? 0 : json['enter_time']);
     shopId = json['shop_id'];
     address = CustomerAddressModel.fromJsom(json);
-    gender = getGenderById(JsonConvertKit.asInt(json['client_sex']));
+    gender = getGenderById(JsonKit.asInt(json['client_sex']));
   }
 
   Map toJson() => {
@@ -46,25 +63,30 @@ class CustomerDetailModel {
         'client_mobile': tel,
         'client_wx': wx,
         'client_sex': getGenderId(gender),
-        'enter_time': JsonConvertKit.formatDateTime(enterTime),
+        'enter_time': (enterTime.millisecondsSinceEpoch ~/ 1000),
         'province_id': address.address.provicne.id,
         'city_id': address.address.city.id,
         'district_id': address.address.district.id,
-        'detail_address': address.detailAddress,
+        'detail_address': address.detailAddress ?? '',
         'client_age': age,
+        'mobile': tel,
+        'province': address.address.provicne.id,
+        'city': address.address.city.id,
+        'district': address.address.district.id,
+        'gender': getGenderId(gender),
+        'address': address.detailAddress ?? '',
       };
 }
 
 class CustomerAddressModel {
   AddressModel address;
   String detailAddress;
-  int addressId;
-
+  String addressId;
+  CustomerAddressModel();
   CustomerAddressModel.fromJsom(Map json) {
-    address = AddressModel.fromId(
-        JsonConvertKit.asInt(json['province_id']),
-        JsonConvertKit.asInt(json['city_id']),
-        JsonConvertKit.asInt(json['district_id']));
+    addressId = json["address_id"];
+    address = AddressModel.fromId(JsonKit.asInt(json['province_id']),
+        JsonKit.asInt(json['city_id']), JsonKit.asInt(json['district_id']));
 
     detailAddress = json['detail_address'];
   }
@@ -78,4 +100,16 @@ class CustomerAddressModel {
         "city_name": address.city.name,
         "district_name": address.district.name
       };
+}
+
+class CustomerDetailKongoModelListWrapper {
+  List<CustomerDetailKongoModel> kongoList = [];
+}
+
+class CustomerDetailKongoModel {
+  String icon;
+  String title;
+  Function onTap;
+
+  CustomerDetailKongoModel({this.icon, this.title, this.onTap});
 }

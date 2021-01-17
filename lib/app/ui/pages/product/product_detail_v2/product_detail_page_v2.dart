@@ -2,7 +2,7 @@
  * @Description:改版后的商品详情
  * @Author: iamsmiling
  * @Date: 2021-01-08 13:44:47
- * @LastEditTime: 2021-01-10 21:06:58
+ * @LastEditTime: 2021-01-12 14:54:27
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +21,7 @@ import 'package:taojuwu/app/ui/widgets/bloc/x_customer_choose_button.dart';
 
 import 'fragment/product_detail_banner/product_detail_banner_section_card_v2.dart';
 import 'fragment/product_detail_footer_v2/product_detail_footer_v2.dart';
+import 'package:taojuwu/app/domain/model/product/product_detail_model.dart';
 
 class ProductDetailPageV2 extends StatelessWidget {
   const ProductDetailPageV2({Key key}) : super(key: key);
@@ -60,14 +61,11 @@ class ProductDetailPageV2 extends StatelessWidget {
                             product: _.product,
                           ),
                         ),
-                        SliverToBoxAdapter(
-                          child: Divider(
-                            height: XDimens.gap16,
-                          ),
-                        ),
+
                         SliverToBoxAdapter(
                           child: Visibility(
-                            visible: _.product is CurtainProductType,
+                            visible:
+                                _.product.productType is CurtainProductType,
                             child: GestureDetector(
                               onTap: () => Get.toNamed(
                                   AppRoutes.productQuotation,
@@ -92,11 +90,7 @@ class ProductDetailPageV2 extends StatelessWidget {
                         // SliverToBoxAdapter(
                         //   child: ProductDetailImageSectionView(),
                         // ),
-                        SliverToBoxAdapter(
-                          child: Divider(
-                            height: XDimens.gap16,
-                          ),
-                        ),
+
                         SliverToBoxAdapter(
                           child: ProductMixSection(
                             productList: _.mixedProductList,

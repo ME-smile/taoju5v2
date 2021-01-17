@@ -2,12 +2,13 @@
  * @Description: 布艺帘商品属性选择卡片
  * @Author: iamsmiling
  * @Date: 2020-12-22 17:37:04
- * @LastEditTime: 2020-12-29 17:37:51
+ * @LastEditTime: 2021-01-15 16:06:39
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/res/x_colors.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
+import 'package:taojuwu/app/res/x_icons.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/fragment/product_attrs_selector/fabric_curtain_product_attrs_selector/fabirc_curtain_product_attrs_selector_controller.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/product_detail_controller.dart';
@@ -43,29 +44,40 @@ class FabircCurtainProductAttrsSelectorCard extends StatelessWidget {
                   child: GetBuilder<FabricCurtainProductAttrSelectorController>(
                     id: "size",
                     builder: (_) {
-                      return Row(
+                      return Column(
                         children: [
-                          Text.rich(TextSpan(
-                              text: "*",
-                              style: TextStyle(
-                                color: XColors.warningColor,
-                              ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: XDimens.gap16),
+                            child: Row(
                               children: [
-                                WidgetSpan(
-                                    child: Padding(
-                                  padding: EdgeInsets.only(left: XDimens.gap12),
+                                Text.rich(TextSpan(
+                                    text: "*",
+                                    style: TextStyle(
+                                      color: XColors.warningColor,
+                                    ),
+                                    children: [
+                                      WidgetSpan(
+                                          child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: XDimens.gap12),
+                                        child: Text(_.isSizeBlank
+                                            ? "请预填测装数据"
+                                            : "已预填测装数据"),
+                                      )),
+                                    ])),
+                                Spacer(),
+                                Visibility(
                                   child: Text(
-                                      _.isSizeBlank ? "请预填测装数据" : "已预填测装数据"),
-                                )),
-                              ])),
-                          Spacer(),
-                          Visibility(
-                            child: Text(
-                              _.tip,
-                              textAlign: TextAlign.end,
+                                    _.tip,
+                                    textAlign: TextAlign.end,
+                                  ),
+                                  visible: !_.isSizeBlank,
+                                ),
+                                Icon(XIcons.next)
+                              ],
                             ),
-                            visible: !_.isSizeBlank,
-                          )
+                          ),
+                          Divider()
                         ],
                       );
                     },

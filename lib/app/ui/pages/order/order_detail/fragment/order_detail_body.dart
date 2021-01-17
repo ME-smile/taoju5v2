@@ -2,7 +2,7 @@
  * @Description: 底单详情主体信息
  * @Author: iamsmiling
  * @Date: 2021-01-06 14:36:29
- * @LastEditTime: 2021-01-06 16:21:29
+ * @LastEditTime: 2021-01-14 09:19:18
  */
 
 import 'package:flutter/material.dart';

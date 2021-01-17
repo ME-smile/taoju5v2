@@ -2,7 +2,7 @@
  * @Description: 商品报价单
  * @Author: iamsmiling
  * @Date: 2021-01-08 15:00:36
- * @LastEditTime: 2021-01-10 23:15:11
+ * @LastEditTime: 2021-01-15 18:01:43
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,6 @@ import 'package:taojuwu/app/ui/pages/product/product_detail_v2/subpage/product_q
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taojuwu/app/ui/widgets/common/button/x_rotation_arrow.dart';
-import 'package:taojuwu/app/ui/widgets/common/textfield/x_selector_text_field.dart';
 
 class ProductQuotationPage extends GetView<ProductQuotationController> {
   const ProductQuotationPage({Key key}) : super(key: key);
@@ -44,11 +43,13 @@ class ProductQuotationPage extends GetView<ProductQuotationController> {
               padding: EdgeInsets.symmetric(horizontal: XDimens.gap16),
               child: Column(
                 children: [
-                  XSelectorTextField(label: Text("安装位置:")),
-                  XSelectorTextField(label: Text("窗   型:")),
-                  XSelectorTextField(label: Text("* 墙体尺寸")),
-                  XSelectorTextField(label: Text("打开方式:")),
-                  XSelectorTextField(label: Text("窗帘:")),
+                  // XSelectorTextField(
+                  //   label: Text("安装位置:"),
+                  // ),
+                  // XSelectorTextField(label: Text("窗   型:")),
+                  // XSelectorTextField(label: Text("* 墙体尺寸")),
+                  // XSelectorTextField(label: Text("打开方式:")),
+                  // XSelectorTextField(label: Text("窗帘:")),
                 ],
               ),
             ),

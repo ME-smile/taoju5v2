@@ -2,7 +2,7 @@
  * @Description: SettingController
  * @Author: iamsmiling
  * @Date: 2020-12-22 15:53:57
- * @LastEditTime: 2021-01-10 15:50:04
+ * @LastEditTime: 2021-01-12 10:34:39
  */
 
 import 'package:get/get.dart';
@@ -24,9 +24,6 @@ class SettingController extends GetxController {
   void clear() {
     ///清空信息
     StorageManager().clear();
-
-    //页面跳转
-    Get.offAll(LoginPage(), binding: LoginBinding());
   }
 
   UserProviderController get userProviderController =>
@@ -40,6 +37,8 @@ class SettingController extends GetxController {
 
         ///清空客户信息
         Get.find<CustomerProviderController>().clear();
+        //页面跳转
+        Get.offAll(LoginPage(), binding: LoginBinding());
       }
     }).whenComplete(update);
   }

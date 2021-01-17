@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2020-12-21 10:35:04
- * @LastEditTime: 2021-01-10 13:30:03
+ * @LastEditTime: 2021-01-15 22:33:21
  */
 
 import 'package:flutter/material.dart';
@@ -50,6 +50,15 @@ class ProductListParentController extends GetxController
   void onClose() {
     tabController?.dispose();
     super.onClose();
+  }
+
+  void triggerSortAction(ProductSortModel model) {
+    for (ProductSortModel e in sortList) {
+      e.isChecked = e == model;
+    }
+    update(["sort"]);
+    Get.back();
+    productListController.refreshData(params: model.params);
   }
 
   Future sort(BuildContext ctx) {
@@ -105,11 +114,14 @@ class ProductListController extends GetxController {
 
   RefreshController refreshController;
 
+  final Map initialParams;
+
+  ProductListController(this.initialParams);
+
   Future load({Map params}) {
     loadState = XLoadState.busy;
-
     return _repository
-        .productList(params: params)
+        .productList(params: initialParams)
         .then((ProductModelListWrapper wrapper) {
       loadState = XLoadState.idle;
       productList = wrapper.list;
@@ -119,11 +131,12 @@ class ProductListController extends GetxController {
   }
 
   Future refreshData({Map params}) {
+    initialParams.addAll(params ?? {});
     loadState = XLoadState.busy;
     update();
 
     return _repository
-        .productList(params: params)
+        .productList(params: initialParams)
         .then((ProductModelListWrapper wrapper) {
       refreshController.refreshCompleted();
       loadState = XLoadState.idle;

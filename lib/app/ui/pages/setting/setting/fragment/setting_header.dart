@@ -2,7 +2,7 @@
  * @Description: 设置页面的头部
  * @Author: iamsmiling
  * @Date: 2021-01-07 21:41:14
- * @LastEditTime: 2021-01-07 21:47:21
+ * @LastEditTime: 2021-01-12 19:40:04
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,9 +27,12 @@ class SettingHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  children: [Text(_.user.nickName), Text(_.user.userTel)],
+                  children: [
+                    Text(_.user?.nickName ?? ""),
+                    Text(_.user?.userTel ?? "")
+                  ],
                 ),
-                Text(_.user.shopName)
+                Text(_.user?.shopName ?? "")
               ],
             ))
           ],

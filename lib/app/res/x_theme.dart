@@ -2,7 +2,7 @@
  * @Description: 主题相关配置
  * @Author: iamsmiling
  * @Date: 2020-12-23 17:07:11
- * @LastEditTime: 2021-01-10 17:27:12
+ * @LastEditTime: 2021-01-15 09:24:12
  */
 
 import 'package:flutter/cupertino.dart';
@@ -16,6 +16,9 @@ class XTheme {
   bool isDarkMode = false;
 
   static ThemeData lightTheme = ThemeData(
+      cursorColor: XColors.foregroundColor,
+      backgroundColor: XColors.foregroundColor,
+      accentColor: XColors.foregroundColor,
       primaryColor: XColors.primaryColor,
       buttonColor: XColors.buttonColor,
       primaryColorDark: XColors.primaryColor,
@@ -23,6 +26,7 @@ class XTheme {
       // primaryTextTheme: TextTheme(
 
       // ),
+
       iconTheme: IconThemeData(color: XColors.iconColor, size: XDimens.sp36),
       dividerTheme:
           DividerThemeData(color: XColors.dividerColor, thickness: 1, space: 1),
@@ -42,6 +46,13 @@ class XTheme {
         // labelStyle: XStyles.selectedLabelStyle,
       ),
       textTheme: TextTheme(bodyText1: XStyles.bodyText1),
+      // primarySwatch: MaterialColor(primary, swatch),
+      timePickerTheme: TimePickerThemeData(
+          dialHandColor: XColors.foregroundColor,
+          backgroundColor: XColors.foregroundColor,
+          dialBackgroundColor: XColors.foregroundColor,
+          dayPeriodColor: XColors.foregroundColor,
+          entryModeIconColor: XColors.foregroundColor),
       dialogTheme: DialogTheme(
           titleTextStyle: XStyles.dialogTitle,
           contentTextStyle: XStyles.dialogContent,
@@ -75,6 +86,8 @@ class XTheme {
       inputDecorationTheme: InputDecorationTheme(
           labelStyle: XStyles.inputLabelText,
           hintStyle: XStyles.placeHolderText,
+          focusColor: XColors.foregroundColor,
+          hoverColor: XColors.foregroundColor,
           contentPadding: EdgeInsets.symmetric(horizontal: XDimens.gap32),
 
           // alignLabelWithHint: true,

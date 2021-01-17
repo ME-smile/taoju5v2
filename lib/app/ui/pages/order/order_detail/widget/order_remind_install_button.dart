@@ -2,7 +2,7 @@
  * @Description: 提醒安装
  * @Author: iamsmiling
  * @Date: 2021-01-06 17:43:35
- * @LastEditTime: 2021-01-10 17:49:47
+ * @LastEditTime: 2021-01-15 14:18:34
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,8 @@ class OrderRemindInstallButton extends GetView<OrderDetailController> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      child: OutlineButton(onPressed: () {}, child: Text("提醒安装")),
+      child: OutlineButton(
+          onPressed: controller.openRemindOrderDialog, child: Text("提醒安装")),
 
       ///商品是窗帘商品 并且处于待审核状态
       visible: controller.order.productType is CurtainProductType &&

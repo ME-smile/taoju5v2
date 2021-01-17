@@ -2,7 +2,7 @@
  * @Description: 通用文字字体定义
  * @Author: iamsmiling
  * @Date: 2020-11-27 21:25:26
- * @LastEditTime: 2020-12-23 17:05:36
+ * @LastEditTime: 2021-01-15 09:23:58
  */
 import 'package:flutter/material.dart';
 
@@ -10,8 +10,10 @@ import 'x_colors.dart';
 import 'x_dimens.dart';
 
 class XStyles {
-  static TextStyle unselectedLabelStyle =
-      TextStyle(fontSize: XDimens.sp32, color: XColors.unSelectedTextColor);
+  static TextStyle unselectedLabelStyle = TextStyle(
+    fontSize: XDimens.sp32,
+    color: XColors.unSelectedTextColor,
+  );
 
   static TextStyle selectedLabelStyle = TextStyle(
       fontSize: XDimens.sp32,

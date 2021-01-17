@@ -2,7 +2,7 @@
  * @Description: 选品页面
  * @Author: iamsmiling
  * @Date: 2021-01-10 13:23:31
- * @LastEditTime: 2021-01-10 18:01:31
+ * @LastEditTime: 2021-01-15 22:35:02
  */
 
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class SelectableProductListPage
           //     child: ProductListHeader(), preferredSize: Size.fromHeight(36)),
         ),
         body: GetBuilder<ProductListController>(
-            init: ProductListController(),
+            init: ProductListController({"category_type": 0}),
             tag: "窗帘",
             builder: (_) {
               return Column(children: [

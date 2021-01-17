@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-01-04 13:27:02
  */
 
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 class ProductAttrAdapterModel {
   int type;
@@ -17,6 +17,6 @@ class ProductAttrAdapterModel {
     type = json["type"];
     key = json["attr_category"];
     value = json["attr_name"];
-    totalPrice = JsonConvertKit.asDouble(json["sub_total"]);
+    totalPrice = JsonKit.asDouble(json["sub_total"]);
   }
 }

@@ -2,7 +2,7 @@
  * @Description: CartBinding
  * @Author: iamsmiling
  * @Date: 2020-12-28 10:29:52
- * @LastEditTime: 2021-01-06 22:33:59
+ * @LastEditTime: 2021-01-16 00:01:23
  */
 
 import 'package:get/get.dart';
@@ -15,7 +15,8 @@ class CartBinding extends Bindings {
     Get.lazyPut(() => CartListParentController());
 
     for (ProductTabModel tab in Get.find<CartListParentController>().tabList) {
-      Get.lazyPut(() => CartListController(), tag: tab.name);
+      Get.lazyPut(() => CartListController({"category_type": tab.id}),
+          tag: tab.name);
     }
   }
 }

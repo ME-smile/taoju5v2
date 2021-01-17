@@ -2,10 +2,12 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2021-01-07 22:13:38
- * @LastEditTime: 2021-01-11 16:32:01
+ * @LastEditTime: 2021-01-16 14:48:23
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taojuwu/app/res/x_colors.dart';
+import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/ui/dialog/order/deposit.dart';
 import 'package:taojuwu/app/ui/dialog/order/note.dart';
 import 'package:taojuwu/app/ui/pages/order/commit_order/commit_order_controller.dart';
@@ -19,6 +21,8 @@ class CommitOrderFooter extends GetView<CommitOrderController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: XDimens.gap16),
+      color: XColors.primaryColor,
       child: Column(
         children: [
           XSelectorTextField<DateTime>(
@@ -27,9 +31,9 @@ class CommitOrderFooter extends GetView<CommitOrderController> {
               "客户意向测量时间",
               textAlign: TextAlign.end,
             )),
-            initialValue: controller.params.measureTime,
+            initialValue: controller.params.optionalParams.measureTime,
             onValueChange: (DateTime date) {
-              controller.params.measureTime = date;
+              controller.params.optionalParams.measureTime = date;
             },
             onStringify: (DateTime date) {
               return CommonKit.formatDateTime(date);
@@ -42,13 +46,16 @@ class CommitOrderFooter extends GetView<CommitOrderController> {
           ),
           XSelectorTextField<DateTime>(
             label: Expanded(
-                child: Text(
-              "客户意向安装时间",
-              textAlign: TextAlign.end,
+                child: Container(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                "客户意向安装时间",
+                textAlign: TextAlign.end,
+              ),
             )),
-            initialValue: controller.params.installTime,
+            initialValue: controller.params.optionalParams.installTime,
             onValueChange: (DateTime date) {
-              controller.params.installTime = date;
+              controller.params.optionalParams.installTime = date;
             },
             onStringify: (DateTime date) {
               return CommonKit.formatDateTime(date);
@@ -66,18 +73,18 @@ class CommitOrderFooter extends GetView<CommitOrderController> {
                 textAlign: TextAlign.end,
               )),
               onValueChange: (String val) {
-                controller.params.windowCount = val;
+                controller.params.optionalParams.windowCount = val;
               },
               onFuture: () => showCountPicker(context,
-                  defaultValue: controller.params.windowCount,
+                  defaultValue: controller.params.optionalParams.windowCount,
                   optionList: List.generate(10,
                       (index) => "${(index + 1) < 10 ? index + 1 : '10+'}"))),
           XSelectorTextField<String>(
             onValueChange: (String text) {
-              controller.params.deposit = text;
+              controller.params.optionalParams.deposit = text;
             },
             onFuture: () => showDepositDialog(context,
-                initialValue: controller.params.deposit),
+                initialValue: controller.params.optionalParams.deposit),
             label: Expanded(
                 child: Text(
               "定金",
@@ -86,10 +93,10 @@ class CommitOrderFooter extends GetView<CommitOrderController> {
           ),
           XSelectorTextField<String>(
             onValueChange: (String value) {
-              controller.params.deposit = value;
+              controller.params.optionalParams.deposit = value;
             },
-            onFuture: () =>
-                showNoteDialog(context, initialValue: controller.params.note),
+            onFuture: () => showNoteDialog(context,
+                initialValue: controller.params.optionalParams.note),
             label: Expanded(
                 child: Text(
               "备注",

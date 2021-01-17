@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-01-09 19:10:11
  */
 
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 import 'product_type.dart';
 
@@ -14,10 +14,10 @@ class ProductModelListWrapper {
   int totalCount;
 
   ProductModelListWrapper.fromJson(Map json) {
-    totalCount = JsonConvertKit.getValueInComplexMap(
-        json, ["goods_list", "total_count"]);
-    list = JsonConvertKit.asList(
-            JsonConvertKit.getValueInComplexMap(json, ["goods_list", "data"]))
+    totalCount =
+        JsonKit.getValueInComplexMap(json, ["goods_list", "total_count"]);
+    list = JsonKit.asList(
+            JsonKit.getValueInComplexMap(json, ["goods_list", "data"]))
         .map((e) => ProductModel.fromJson(e))
         .toList();
   }
@@ -39,10 +39,10 @@ class ProductModel {
     name = json['goods_name'];
     image = (json['pic_cover_mid'] ?? json['image']);
     code = json["goods_type"];
-    marketPrice = JsonConvertKit.asDouble(json['market_price']);
+    marketPrice = JsonKit.asDouble(json['market_price']);
     unit = json["unit"];
     picId = json["pic_id"];
-    price = JsonConvertKit.asDouble(
+    price = JsonKit.asDouble(
         (json['price'] ?? json['display_price'] ?? json['market_price']));
   }
 }

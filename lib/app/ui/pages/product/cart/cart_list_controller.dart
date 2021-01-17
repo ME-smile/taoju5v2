@@ -2,7 +2,7 @@
  * @Description: 购物车
  * @Author: iamsmiling
  * @Date: 2020-12-28 10:29:31
- * @LastEditTime: 2021-01-07 10:11:51
+ * @LastEditTime: 2021-01-16 15:59:10
  */
 
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:taojuwu/app/domain/model/product/cart_product_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_adapter_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_tab_model.dart';
 import 'package:taojuwu/app/domain/repository/product/product_repository.dart';
+import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/home/customer_provider_controller.dart';
 import 'package:taojuwu/app/ui/widgets/base/x_view_state.dart';
 
@@ -25,6 +26,8 @@ class CartListParentController extends GetxController
   ];
 
   TabController tabController;
+
+  double totalPrice = 0.0;
   CartListParentController();
 
   String get tag => tabList[tabController?.index ?? 0].name;
@@ -35,16 +38,21 @@ class CartListParentController extends GetxController
   bool get isCheckedAll => cartListController.isCheckedAll;
 
   set isCheckedAll(bool flag) {
-    CartListController cartListController =
-        Get.find<CartListController>(tag: tag);
     cartListController.cartList.forEach((e) {
       e.isChecked.value = flag;
     });
+    totalPrice = cartListController.totalPrice;
     // cartListController.isCheckedAll = flag;
   }
 
+  void commit() {
+    cartListController.commit();
+  }
+
   void tabChangeListener() {
-    update(["action"]);
+    isCheckedAll = cartListController.isCheckedAll;
+    totalPrice = cartListController.totalPrice;
+    update(["action", "isCheckedAll"]);
   }
 
   @override
@@ -58,6 +66,7 @@ class CartListParentController extends GetxController
 
   @override
   void onClose() {
+    tabController.removeListener(tabChangeListener);
     tabController?.dispose();
     super.onClose();
   }
@@ -66,8 +75,10 @@ class CartListParentController extends GetxController
 class CartListController extends GetxController {
   ProductRepository _repository = ProductRepository();
 
-  int get clientId => Get.find<CustomerProviderController>().id;
+  CartListController(this.initialParams);
 
+  String get clientId => Get.find<CustomerProviderController>().id;
+  final Map initialParams;
   List<CartPorductModel> cartList = [];
 
   List<CartPorductModel> get checkedCartList {
@@ -94,6 +105,27 @@ class CartListController extends GetxController {
 
     ///任意一个[checked]属性为[false]则不是全选
     return !cartList.any((e) => e.isChecked.value == false);
+  }
+
+  void checkItem(CartPorductModel model, bool flag) {
+    model.isChecked.value = flag;
+    CartListParentController parentController =
+        Get.find<CartListParentController>();
+    parentController.totalPrice = totalPrice;
+
+    parentController.update(["totalPrice"]);
+  }
+
+  List<ProductAdapterModel> get checkedProductList {
+    if (GetUtils.isNullOrBlank(cartList)) return [];
+    return cartList
+        .where((e) => e.isChecked.value)
+        .map((e) => e.adapt())
+        .toList();
+  }
+
+  void commit() {
+    Get.toNamed(AppRoutes.commitOrder + "/1", arguments: checkedProductList);
   }
 
   XLoadState loadState = XLoadState.idle;

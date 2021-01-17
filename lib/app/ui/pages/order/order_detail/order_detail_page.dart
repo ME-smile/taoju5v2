@@ -2,7 +2,7 @@
  * @Description: 商品详情页
  * @Author: iamsmiling
  * @Date: 2020-12-22 14:35:39
- * @LastEditTime: 2021-01-10 20:50:16
+ * @LastEditTime: 2021-01-13 15:57:40
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +14,7 @@ import 'fragment/order_action_tip_bar.dart';
 import 'fragment/order_detail_body.dart';
 import 'fragment/order_detail_bottom_action_bar.dart';
 import 'fragment/order_detail_header.dart';
+import 'fragment/order_detail_sheet.dart';
 import 'fragment/order_logistics_card.dart';
 import 'order_detail_controller.dart';
 
@@ -46,6 +47,7 @@ class OrderDetailPage extends StatelessWidget {
                         endIndent: XDimens.gap32,
                       ),
                       OrderDetailBody(),
+                      OrderDetailSheet(),
                       Divider(
                         indent: XDimens.gap32,
                         endIndent: XDimens.gap32,

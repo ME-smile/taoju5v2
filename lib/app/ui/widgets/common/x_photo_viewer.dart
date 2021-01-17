@@ -2,7 +2,7 @@
  * @Description: 可预览的图片
  * @Author: iamsmiling
  * @Date: 2020-12-23 17:17:49
- * @LastEditTime: 2020-12-25 16:08:46
+ * @LastEditTime: 2021-01-16 19:57:26
  */
 
 import 'package:animations/animations.dart';
@@ -14,18 +14,22 @@ import 'package:photo_view/photo_view.dart';
 class XPhotoViewer extends StatelessWidget {
   final String url;
   final String bigImageUrl;
+
   const XPhotoViewer({Key key, @required this.url, this.bigImageUrl})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return OpenContainer(closedBuilder: (BuildContext context, _) {
-      return CachedNetworkImage(imageUrl: url);
-    }, openBuilder: (BuildContext context, _) {
-      return XInteractivePhotoViewer(
-        imageUrl: bigImageUrl ?? url,
-      );
-    });
+    return OpenContainer(
+        closedElevation: 0,
+        closedBuilder: (BuildContext context, _) {
+          return CachedNetworkImage(imageUrl: url);
+        },
+        openBuilder: (BuildContext context, _) {
+          return XInteractivePhotoViewer(
+            imageUrl: bigImageUrl ?? url,
+          );
+        });
   }
 }
 
@@ -41,7 +45,8 @@ class XInteractivePhotoViewer extends StatefulWidget {
 class _XInteractivePhotoViewerState extends State<XInteractivePhotoViewer> {
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return GestureDetector(
+      onTap: () => Navigator.of(context).pop(),
       child: Container(
         color: Colors.black,
         constraints: BoxConstraints.expand(

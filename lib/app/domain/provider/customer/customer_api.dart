@@ -2,7 +2,7 @@
  * @Description: 客户相关api
  * @Author: iamsmiling
  * @Date: 2020-12-21 17:09:48
- * @LastEditTime: 2021-01-07 15:42:48
+ * @LastEditTime: 2021-01-12 17:13:32
  */
 
 import 'package:taojuwu/app/xdio/x_dio.dart';
@@ -15,5 +15,5 @@ class CustomerAPI {
       XDio().get(url, params: params);
 
   Future<BaseResponse> editCustomer(String url, {Map params}) =>
-      XDio().post(url, formData: params);
+      XDio().post(url, formData: params, queryParameters: params);
 }

@@ -2,7 +2,7 @@
  * @Description: json转换工具类
  * @Author: iamsmiling
  * @Date: 2020-12-21 09:59:08
- * @LastEditTime: 2021-01-10 20:41:49
+ * @LastEditTime: 2021-01-14 14:52:14
  */
 
 import 'package:taojuwu/app/config/net_config.dart';
@@ -11,7 +11,7 @@ import 'package:taojuwu/app/extensions/datetime_kit.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/interface/i_xselectable.dart';
 
-abstract class JsonConvertKit {
+abstract class JsonKit {
   static int asInt(dynamic n) {
     if (n is num) return n.toInt();
     if (GetUtils.isNum(n)) return int.tryParse(n);
@@ -68,7 +68,7 @@ abstract class JsonConvertKit {
   }
 
   static String formatDateTime(DateTime dateTime,
-      {String format: "yyyy-MM-dd"}) {
+      {String format: "yyyy-MM-dd HH:mm:ss"}) {
     return dateTime.formatDate(format: format);
   }
 

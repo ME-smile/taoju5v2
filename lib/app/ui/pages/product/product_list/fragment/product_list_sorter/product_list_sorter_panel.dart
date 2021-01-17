@@ -2,7 +2,7 @@
  * @Description: 商品排序
  * @Author: iamsmiling
  * @Date: 2020-12-25 15:13:39
- * @LastEditTime: 2021-01-06 12:29:22
+ * @LastEditTime: 2021-01-12 21:55:22
  */
 
 import 'package:flutter/material.dart';
@@ -30,25 +30,22 @@ class ProductListSorterPanel extends StatelessWidget {
               children: [
                 for (ProductSortModel model in _.sortList)
                   GestureDetector(
-                    onTap: () {
-                      for (ProductSortModel e in _.sortList) {
-                        e.isChecked = e == model;
-                      }
-                      _.update(["sort"]);
-                      Get.back();
-                      _.productListController.refreshData();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(model.name),
-                        Container(
-                          child: Icon(
+                    onTap: () => _.triggerSortAction(model),
+                    child: Container(
+                      height: 44.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(model.name),
+                          SizedBox(
+                            width: 24.w,
+                          ),
+                          Icon(
                             XIcons.check,
                             color: model.isChecked ? null : Colors.transparent,
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   )
               ],

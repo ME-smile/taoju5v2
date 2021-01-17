@@ -2,12 +2,13 @@
  * @Description: 商品属性选择器
  * @Author: iamsmiling
  * @Date: 2020-12-25 13:26:21
- * @LastEditTime: 2020-12-31 09:50:35
+ * @LastEditTime: 2021-01-15 15:47:49
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/domain/model/product/product_type.dart';
+import 'package:taojuwu/app/res/x_dimens.dart';
 
 import 'fabric_curtain_product_attrs_selector/fabric_curtain_product_attrs_selector_card.dart';
 import 'gauze_curtain_product_attrs_selector/gauze_curtain_product_attrs_selector_card.dart';
@@ -21,6 +22,7 @@ class ProductAttrsSelectorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: XDimens.gap16),
       child: Column(
         children: [
           Visibility(

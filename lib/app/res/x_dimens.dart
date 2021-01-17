@@ -2,7 +2,7 @@
  * @Description: 间距字体大小相关
  * @Author: iamsmiling
  * @Date: 2020-12-16 11:05:02
- * @LastEditTime: 2021-01-08 11:24:15
+ * @LastEditTime: 2021-01-15 14:40:01
  */
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -40,7 +40,7 @@ class XDimens {
 
   static double gap20 = 20.w;
 
-  static double gap32 = 32.h;
+  static double gap32 = 32.w;
 
   static double gap36 = 36.h;
 

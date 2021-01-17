@@ -2,7 +2,7 @@
  * @Description:app颜色定义
  * @Author: iamsmiling
  * @Date: 2020-12-16 11:04:32
- * @LastEditTime: 2021-01-10 15:35:39
+ * @LastEditTime: 2021-01-15 14:48:03
  */
 
 import 'package:flutter/material.dart';
@@ -29,6 +29,7 @@ class XColors {
   //禁用时的颜色
   static const Color disabledColor = Colors.grey;
 
+  static const Color lightYellowColor = Color(0xFFFCF3E8);
   //黄颜色
   static const Color accentColor = Color(0xFFFFB861);
 
@@ -45,7 +46,9 @@ class XColors {
   static const Color contentColor = Color(0xFF333333);
 
   ///描述性文字颜色
-  static const Color descriptionTextColor = Color(0xFF464646);
+  static const Color descriptionTextColor = Color(0xFF6D6D6D);
+
+  // static const Color description
 
   ///连接文字颜色
   static const Color linkTextColor = Color(0xFF388FFF);
@@ -65,6 +68,10 @@ class XColors {
   static const Color pinkColor = Color(0xFFEB8181);
 
   static const Color dividerColor = Color(0xFFF5F5F9);
+
+  static const Color pinnedBannerColor = Color(0xFFF1F1F1);
+
+  static const Color pinnedTextColor = Color(0xFF666666);
 
   static const Color subTitleColor = Color(0xFF999999);
 
@@ -88,6 +95,8 @@ class XColors {
 
   ///淡蓝色
   static const Color lightBlueColor = Color(0xFFF0F5FF);
+
+  static const Color greyTextColor = Color(0xFF999999);
 
   ///蓝色字体
   static const Color blueTextColor = Color(0xFF3A79E7);

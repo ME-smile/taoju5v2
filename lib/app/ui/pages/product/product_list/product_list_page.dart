@@ -2,7 +2,7 @@
  * @Description: 商品列表页
  * @Author: iamsmiling
  * @Date: 2020-12-18 14:29:05
- * @LastEditTime: 2021-01-10 18:04:31
+ * @LastEditTime: 2021-01-16 18:36:01
  */
 
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class ProductListPage extends GetView<ProductListParentController> {
         children: [
           for (ProductTabModel tab in controller.tabList)
             GetBuilder<ProductListController>(
-              init: ProductListController(),
+              init: ProductListController({"category_type": tab.id}),
               tag: tab.name,
               autoRemove: false,
               builder: (_) {

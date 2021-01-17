@@ -6,7 +6,7 @@
  */
 import 'package:taojuwu/app/domain/model/product/product_adapter_model.dart';
 import 'package:taojuwu/app/interface/i_xselectable.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 const Map _dict = {
   1: '空间',
@@ -37,10 +37,9 @@ class CurtainProductAttrModel {
 
   CurtainProductAttrModel.fromType(this.type, Map json,
       {this.isMultiple = false}) {
-    optionList = JsonConvertKit.selectFirstItem(
-        JsonConvertKit.asList(json["$type"])
-            .map((e) => CurtainProductAttrOptionModel.fromJson(e))
-            .toList());
+    optionList = JsonKit.selectFirstItem(JsonKit.asList(json["$type"])
+        .map((e) => CurtainProductAttrOptionModel.fromJson(e))
+        .toList());
     typeName = _dict[type];
   }
 
@@ -117,12 +116,12 @@ class CurtainProductAttrOptionModel implements IXSelectable {
 
   CurtainProductAttrOptionModel.fromJson(Map json) {
     id = json["id"];
-    picture = JsonConvertKit.asWebUrl(json["picture"]);
+    picture = JsonKit.asWebUrl(json["picture"]);
     assetImage = json["picture"];
     name = json["k"];
     tag = json["v"];
     tagId = json["tag_id"];
-    price = JsonConvertKit.asDouble(json["price"]);
+    price = JsonKit.asDouble(json["price"]);
     type = json["type"];
     typeName = _dict[json[type]];
   }

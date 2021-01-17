@@ -2,7 +2,7 @@
  * @Description: 商品过滤页面
  * @Author: iamsmiling
  * @Date: 2020-12-25 16:28:08
- * @LastEditTime: 2021-01-10 17:38:40
+ * @LastEditTime: 2021-01-12 22:00:48
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,17 +31,26 @@ class ProductListFilterPage extends StatelessWidget {
                   loadState: _.loadState,
                   builder: (BuildContext context) {
                     return Container(
+                      color: XColors.primaryColor,
+                      padding: EdgeInsets.symmetric(horizontal: XDimens.gap16),
                       child: ListView.builder(
                         itemCount: _.tagList?.length ?? 0,
                         itemBuilder: (BuildContext context, int i) {
                           ProductFilterTagModel tag = _.tagList[i];
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(tag.title),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: XDimens.gap16),
+                                child: Text(tag.title),
+                              ),
                               GetBuilder<ProductListFilterController>(
                                 id: tag.key,
                                 builder: (_) {
                                   return Wrap(
+                                    runSpacing: XDimens.gap16,
+                                    spacing: XDimens.gap32,
                                     children: [
                                       for (ProductFilterTagOptionModel option
                                           in tag.options)

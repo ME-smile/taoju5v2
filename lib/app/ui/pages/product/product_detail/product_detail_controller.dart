@@ -2,12 +2,14 @@
  * @Description: 商品详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 14:43:22
- * @LastEditTime: 2021-01-04 14:04:39
+ * @LastEditTime: 2021-01-15 15:45:56
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taojuwu/app/domain/model/product/design_product_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_adapter_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_detail_model.dart';
+import 'package:taojuwu/app/domain/model/product/product_model.dart';
 import 'package:taojuwu/app/domain/repository/product/product_repository.dart';
 import 'package:taojuwu/app/storage/taojuwu_storage.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/fragment/product_attrs_selector/base_curtain_product_attrs_selector_controller.dart';
@@ -37,6 +39,18 @@ class ProductDetailController extends GetxController {
 
   ScrollController scrollController;
 
+  ///搭配精选
+  List<ProductModel> mixedProductList;
+
+  ///为你推荐
+  List<ProductModel> recomendProductList;
+
+  ///场景推荐
+  List<DesignProductModel> sceneDesignProductList;
+
+  ///软装方案
+  List<DesignProductModel> softDesignProductList;
+
   ///[tag]
   String tag;
 
@@ -47,6 +61,10 @@ class ProductDetailController extends GetxController {
       loadState = XLoadState.idle;
       this.wrapper = wrapper;
       detailModel = wrapper.detailModel;
+      mixedProductList = wrapper.mixedProductList;
+      sceneDesignProductList = wrapper.sceneDesignProductList;
+      softDesignProductList = wrapper.softDesignProductList;
+      recomendProductList = wrapper.recommendedProductList;
       scrollController = ScrollController();
     }).catchError((err) {
       loadState = XLoadState.error;

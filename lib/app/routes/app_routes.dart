@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: iamsmiling
  * @Date: 2020-12-18 16:16:31
- * @LastEditTime: 2021-01-10 13:26:15
+ * @LastEditTime: 2021-01-16 18:49:52
  */
 part of 'app_pages.dart';
 
@@ -40,6 +40,8 @@ abstract class AppRoutes {
   static const orderDetail = '/orderDetail';
 
   static const commitOrder = '/commitOrder';
+
+  static const commitOrderSuccess = '/commitOrderSuccess';
 
   static const setting = '/setting';
 

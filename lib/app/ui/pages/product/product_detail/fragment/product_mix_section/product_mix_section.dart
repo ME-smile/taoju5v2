@@ -2,7 +2,7 @@
  * @Description: 产品搭配
  * @Author: iamsmiling
  * @Date: 2021-01-08 16:54:18
- * @LastEditTime: 2021-01-09 19:45:37
+ * @LastEditTime: 2021-01-15 15:41:24
  */
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -34,6 +34,7 @@ class ProductMixSection extends StatelessWidget {
       visible: !GetUtils.isNullOrBlank(productList),
       child: Container(
           color: Theme.of(context).primaryColor,
+          margin: EdgeInsets.only(top: XDimens.gap16),
           padding: EdgeInsets.symmetric(
               horizontal: XDimens.gap16, vertical: XDimens.gap16),
           child: Column(
@@ -75,7 +76,7 @@ class ProductMixSection extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () => Get.toNamed(
-                                        AppRoutes.productDetailV2 + "/${e.id}"),
+                                        AppRoutes.productDetail + "/${e.id}"),
                                     child: SizedBox(
                                       height: 160.h,
                                       child: AspectRatio(

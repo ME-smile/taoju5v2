@@ -2,7 +2,7 @@
  * @Description: 订单类型
  * @Author: iamsmiling
  * @Date: 2020-12-28 10:06:50
- * @LastEditTime: 2021-01-05 11:17:33
+ * @LastEditTime: 2021-01-14 14:23:11
  */
 import 'order_status.dart';
 
@@ -12,6 +12,9 @@ enum OrderType {
 
   ///[selectionOrder]选品单
   selectionOrder,
+
+  ///成品单
+  endProductOrder,
 }
 
 ///[description]: 订单类型归结于[type]和[orderStatus]
@@ -21,10 +24,11 @@ enum OrderType {
 OrderType getOrderType(int type, OrderStatus orderStatus) {
   ///[]
   Map<int, OrderType> map = {
+    0: OrderType.endProductOrder,
     1: OrderType.selectionOrder,
-    2: OrderType.measureOrder
+    2: OrderType.measureOrder,
   };
-  if (orderStatus > OrderStatus.toBeSelected) {
+  if (type == 2 && orderStatus > OrderStatus.toBeSelected) {
     type = 1;
   }
   return map[type];

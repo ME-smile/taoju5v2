@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:taojuwu/app/storage/taojuwu_storage.dart';
 
 class _XCartButtonController extends GetxController {
-  int id;
+  String id;
 
   @override
   void onInit() {

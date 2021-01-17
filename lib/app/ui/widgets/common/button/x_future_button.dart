@@ -2,7 +2,7 @@
  * @Description: 网络请求按钮
  * @Author: iamsmiling
  * @Date: 2021-01-11 15:27:45
- * @LastEditTime: 2021-01-11 17:14:35
+ * @LastEditTime: 2021-01-15 09:40:09
  */
 
 import 'package:flutter/material.dart';
@@ -16,22 +16,40 @@ class XFutureButton extends StatelessWidget {
   final ButtonMode buttonMode;
   final Widget child;
   final Function onComplete;
+  final Function onSuccess;
+  final Function onError;
+  final String successTip;
+  final String failTip;
   const XFutureButton(
       {Key key,
-      this.onFuture,
+      @required this.onFuture,
       this.buttonMode = ButtonMode.elevated,
       this.child,
-      this.onComplete})
+      this.onComplete,
+      this.onSuccess,
+      this.onError,
+      this.successTip = "提交成功",
+      this.failTip = "提交失败"})
       : super(key: key);
 
   Future _onTap() {
     EasyLoading.show();
-    return onFuture()
-        .then((value) {
-          EasyLoading.dismiss();
-        })
-        .catchError((err) {})
-        .whenComplete(onComplete);
+    return onFuture().then((value) {
+      if (onSuccess != null) {
+        EasyLoading.showSuccess(successTip);
+        onSuccess();
+      }
+    }).catchError((err) {
+      if (onError != null) {
+        EasyLoading.showError(err ?? failTip);
+        onError();
+      }
+    }).whenComplete(() {
+      EasyLoading.dismiss();
+      if (onComplete != null) {
+        onComplete();
+      }
+    });
   }
 
   @override

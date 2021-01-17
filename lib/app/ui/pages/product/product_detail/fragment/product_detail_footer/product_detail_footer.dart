@@ -2,13 +2,14 @@
  * @Description: 底部价格
  * @Author: iamsmiling
  * @Date: 2020-12-24 10:08:11
- * @LastEditTime: 2021-01-10 18:11:32
+ * @LastEditTime: 2021-01-15 23:17:35
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
+import 'package:taojuwu/app/ui/modal/product/finished_product.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/product_detail_controller.dart';
 import 'package:taojuwu/app/ui/pages/product/product_detail/widgets/product_action_bar.dart';
 import 'package:taojuwu/app/ui/pages/product/selectable_product_list/selectable_product_list_controller.dart';
@@ -36,8 +37,12 @@ class ProductDetailFooter extends StatelessWidget {
                 else
                   ProductActionBar(
                     onAddToCart: () => Get.toNamed(AppRoutes.cart),
-                    onBuy: () => Get.toNamed(AppRoutes.commitOrder,
-                        arguments: Get.find<ProductDetailController>().adapt()),
+                    onBuy: () => showFinishedProductAttrModal(context,
+                        product: _.detailModel),
+                    // onBuy: () => Get.toNamed(AppRoutes.commitOrder,
+                    //     arguments: Get.find<ProductDetailController>().adapt()
+
+                    //     ),
                   ),
               ],
             )

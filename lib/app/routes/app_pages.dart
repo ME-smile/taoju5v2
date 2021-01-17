@@ -2,7 +2,7 @@
  * @Description: app页面
  * @Author: iamsmiling
  * @Date: 2020-12-18 16:11:26
- * @LastEditTime: 2021-01-11 15:23:06
+ * @LastEditTime: 2021-01-16 20:30:46
  */
 
 import 'package:get/get.dart';
@@ -22,6 +22,7 @@ import 'package:taojuwu/app/ui/pages/login/login/login_binding.dart';
 import 'package:taojuwu/app/ui/pages/login/login/login_page.dart';
 import 'package:taojuwu/app/ui/pages/order/commit_order/commit_order_binding.dart';
 import 'package:taojuwu/app/ui/pages/order/commit_order/commit_order_page.dart';
+import 'package:taojuwu/app/ui/pages/order/commit_order_success/commit_order_success_page.dart';
 import 'package:taojuwu/app/ui/pages/order/order_detail/order_detail_binding.dart';
 import 'package:taojuwu/app/ui/pages/order/order_detail/order_detail_page.dart';
 import 'package:taojuwu/app/ui/pages/order/order_list/order_list_binding.dart';
@@ -133,13 +134,13 @@ class AppPages {
         page: () => CustomerDetailPage(),
         binding: CustomerDetailBinding()),
     GetPage(
-        name: AppRoutes.customerEdit,
+        name: AppRoutes.customerEdit + "/:canChoose",
         page: () => CustomerEditPage(),
         binding: CustomerEditBinding()),
 
     ///订单相关
     GetPage(
-        name: AppRoutes.orderList,
+        name: AppRoutes.orderList + "/:customerId",
         page: () => OrderListPage(),
         binding: OrderListBinding()),
 
@@ -149,9 +150,12 @@ class AppPages {
         binding: OrderDetailBinding()),
 
     GetPage(
-        name: AppRoutes.commitOrder,
+        name: AppRoutes.commitOrder + "/:orderType",
         page: () => CommitOrderPage(),
         binding: CommitOrderBinding()),
+    GetPage(
+        name: AppRoutes.commitOrderSuccess,
+        page: () => CommitOrderSuccessPage()),
 
     GetPage(
         name: AppRoutes.customerAddressEdit + "/:id",

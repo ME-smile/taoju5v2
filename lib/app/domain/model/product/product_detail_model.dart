@@ -2,12 +2,16 @@
  * @Description: 商品详情数据模型
  * @Author: iamsmiling
  * @Date: 2020-12-21 14:44:38
- * @LastEditTime: 2021-01-09 19:15:38
+ * @LastEditTime: 2021-01-15 23:51:16
  */
 
+import 'package:get/utils.dart';
 import 'package:taojuwu/app/domain/model/product/product_model.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/domain/model/product/product_type.dart';
+import 'package:taojuwu/app/interface/i_xselectable.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
+import 'abstract_product_model.dart';
 import 'design_product_model.dart';
 
 class ProductDetailModelWrapper {
@@ -22,22 +26,22 @@ class ProductDetailModelWrapper {
   List<DesignProductModel> softDesignProductList;
   ProductDetailModelWrapper.fromJson(Map json) {
     detailModel = ProductDetailModel.fromJson(json['goods_detail']);
-    mixedProductList = JsonConvertKit.asList(json["related_goods"])
+    mixedProductList = JsonKit.asList(json["related_goods"])
         .map((e) => ProductModel.fromJson(e))
         .toList();
-    sceneDesignProductList = JsonConvertKit.asList(json["scenes_list"])
+    sceneDesignProductList = JsonKit.asList(json["scenes_list"])
         .map((e) => DesignProductModel.fromJson(e))
         .toList();
-    softDesignProductList = JsonConvertKit.asList(json["soft_project_list"])
+    softDesignProductList = JsonKit.asList(json["soft_project_list"])
         .map((e) => DesignProductModel.fromJson(e))
         .toList();
-    recommendedProductList = JsonConvertKit.asList(json["referrals_goods"])
+    recommendedProductList = JsonKit.asList(json["referrals_goods"])
         .map((e) => ProductModel.fromJson(e))
         .toList();
   }
 }
 
-class ProductDetailModel {
+class ProductDetailModel implements AbstractProdductModel {
   int id;
   String name;
   String fullName;
@@ -48,6 +52,8 @@ class ProductDetailModel {
   int type;
   double marketPrice;
   double price;
+
+  String unit;
   List<String> imgList;
   String skuName;
   int defalutSkuId;
@@ -68,6 +74,9 @@ class ProductDetailModel {
   double flowerSize; //花距
   bool hasFlower; // 窗帘是否有拼花
 
+  List<ProductSpecModel> specList;
+  List<ProductSkuModel> skuList;
+
   List<ProductMaterialInfoModel> infoModelList;
   ProductDetailModel.fromJson(Map json) {
     id = json['goods_id'];
@@ -77,15 +86,24 @@ class ProductDetailModel {
     isCollect = json['is_collect'];
     type = json['goods_type'];
     picId = json['pic_id'];
-    marketPrice = JsonConvertKit.asDouble(json['market_price']);
-    price = JsonConvertKit.asDouble(json['price']);
-    imgList = JsonConvertKit.asList(json['goods_img_list'])
-        .map((e) => JsonConvertKit.getValueByKey(e, 'pic_cover_big').toString())
+    specList = JsonKit.asList(json["spec_list"])
+        .map((e) => ProductSpecModel.fromJson(e))
+        .cast<ProductSpecModel>()
         .toList();
-    cover = JsonConvertKit.asWebUrl(json['image'] ??
-        JsonConvertKit.getValueByKey(json['picture_info'], 'pic_cover_big') ??
+    skuList = JsonKit.asList(json["sku_list"])
+        .map((e) => ProductSkuModel.fromJson(e))
+        .cast<ProductSkuModel>()
+        .toList();
+    marketPrice = JsonKit.asDouble(json['market_price']);
+    price = JsonKit.asDouble(json['price']);
+    unit = json["goods_unit"];
+    imgList = JsonKit.asList(json['goods_img_list'])
+        .map((e) => JsonKit.getValueByKey(e, 'pic_cover_big').toString())
+        .toList();
+    cover = JsonKit.asWebUrl(json['image'] ??
+        JsonKit.getValueByKey(json['picture_info'], 'pic_cover_big') ??
         imgList?.first);
-    infoModelList = JsonConvertKit.asList(json['goods_attribute_list'])
+    infoModelList = JsonKit.asList(json['goods_attribute_list'])
         .map((e) => ProductMaterialInfoModel.fromJson(e))
         ?.toList();
     skuName = json['sku_name'];
@@ -95,11 +113,18 @@ class ProductDetailModel {
     isCustomSize = json['fixed_height'] == 3;
 
     ///后台数据以cm为单位,在这里进行单位转换
-    doorWidth = (JsonConvertKit.asDouble(json['larghezza_size']) / 100);
-    flowerSize = (JsonConvertKit.asDouble(json['flower_distance']) / 100);
+    doorWidth = (JsonKit.asDouble(json['larghezza_size']) / 100);
+    flowerSize = (JsonKit.asDouble(json['flower_distance']) / 100);
 
     hasFlower = json['is_flower'] == 1;
   }
+}
+
+extension ProductDetailModelKit on ProductDetailModel {
+  BaseProductType get productType => getProductType(type);
+
+  String get currentSpecOptionName =>
+      specList?.map((e) => e?.currentOption?.name ?? "")?.join(",") ?? "";
 }
 
 ///商品材料成分信息
@@ -111,5 +136,68 @@ class ProductMaterialInfoModel {
     id = json['attr_value_id'];
     key = json['attr_value'];
     value = json['attr_value_name'];
+  }
+}
+
+class ProductSpecModel {
+  String name;
+  String id;
+  String type;
+
+  List<ProductSpecOptionModel> optionList;
+
+  ProductSpecModel.fromJson(Map json) {
+    id = json["spec_id"];
+    name = json["spec_name"];
+    optionList = JsonKit.asList(json['value'])
+        .map((e) => ProductSpecOptionModel.fromJson(e))
+        .cast<ProductSpecOptionModel>()
+        .toList();
+  }
+}
+
+extension ProductSpecModelKit on ProductSpecModel {
+  ProductSpecOptionModel get currentOption {
+    if (GetUtils.isNullOrBlank(optionList)) return null;
+    return optionList.firstWhere((e) => e.isChecked, orElse: () => null);
+  }
+}
+
+class ProductSpecOptionModel implements IXSelectable {
+  String id;
+  String optionId;
+  String desc;
+  String name;
+
+  @override
+  bool isChecked;
+
+  ProductSpecOptionModel.fromJson(Map json) {
+    id = json['spec_id'];
+    optionId = json['spec_value_id'];
+    desc = json['spec_name'];
+    name = json['spec_value_name'];
+    isChecked = json['selected'];
+  }
+}
+
+class ProductSkuModel {
+  int id;
+  String name;
+  String marketPrice;
+  String price;
+  String image;
+  int picId;
+  int productId;
+  int count;
+
+  ProductSkuModel.fromJson(Map json) {
+    name = json["sku_name"];
+    image = json["image"];
+    price = json["price"];
+    marketPrice = json['market_price'];
+    id = json["sku_id"];
+    picId = json["pic_id"];
+    count = 1;
   }
 }

@@ -2,36 +2,18 @@
  * @Description: 客户详情金刚区
  * @Author: iamsmiling
  * @Date: 2021-01-07 16:51:24
- * @LastEditTime: 2021-01-07 17:06:19
+ * @LastEditTime: 2021-01-12 21:50:53
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taojuwu/app/config/app_config.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/ui/pages/customer/customer_detail/customer_detail_controller.dart';
-
-class _CustomerDetailKongoModel {
-  String icon;
-  String title;
-  Function onTap;
-
-  _CustomerDetailKongoModel({this.icon, this.title, this.onTap});
-}
 
 class CustomerDetailKongo extends StatelessWidget {
   const CustomerDetailKongo({Key key}) : super(key: key);
 
   get id => Get.find<CustomerDetailController>().customer.id;
-  static List<_CustomerDetailKongoModel> list = [
-    _CustomerDetailKongoModel(
-        icon: "customer_collection.png", title: "收藏夹", onTap: () {}),
-    _CustomerDetailKongoModel(
-        icon: "customer_cart.png", title: "购物车", onTap: () {}),
-    _CustomerDetailKongoModel(
-        icon: "customer_order.png", title: "订单", onTap: () {}),
-    _CustomerDetailKongoModel(
-        icon: "customer_cart.png", title: "退款/售后", onTap: () {}),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,23 +32,23 @@ class CustomerDetailKongo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          for (_CustomerDetailKongoModel kongo in list)
-            GestureDetector(
-              onTap: kongo.onTap,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: XDimens.gap16),
-                    child: Image.asset(
-                        AppConfig.assetImagePrefixPath + kongo.icon),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: XDimens.gap16),
-                    child: Text(kongo.title),
-                  )
-                ],
-              ),
-            )
+          // for (_CustomerDetailKongoModel kongo in list)
+          //   GestureDetector(
+          //     onTap: kongo.onTap,
+          //     child: Column(
+          //       children: [
+          //         Padding(
+          //           padding: EdgeInsets.symmetric(vertical: XDimens.gap16),
+          //           child: Image.asset(
+          //               AppConfig.assetImagePrefixPath + kongo.icon),
+          //         ),
+          //         Padding(
+          //           padding: EdgeInsets.only(bottom: XDimens.gap16),
+          //           child: Text(kongo.title),
+          //         )
+          //       ],
+          //     ),
+          //   )
         ],
       ),
     );

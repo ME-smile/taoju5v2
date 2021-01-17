@@ -2,7 +2,7 @@
  * @Description: 为你推荐
  * @Author: iamsmiling
  * @Date: 2021-01-08 17:27:57
- * @LastEditTime: 2021-01-09 18:53:35
+ * @LastEditTime: 2021-01-12 21:40:59
  */
 
 import 'package:flutter/material.dart';
@@ -36,10 +36,9 @@ class RecommendProductSection extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   // controller: scrollController,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.84,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 24),
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.84,
+                  ),
                   itemBuilder: (BuildContext context, int i) {
                     ProductModel e = productList[i];
                     return GestureDetector(

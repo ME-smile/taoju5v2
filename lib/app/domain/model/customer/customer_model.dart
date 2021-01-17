@@ -2,12 +2,14 @@
  * @Description: 客户数据模型
  * @Author: iamsmiling
  * @Date: 2020-12-18 17:55:58
- * @LastEditTime: 2021-01-10 14:40:38
+ * @LastEditTime: 2021-01-16 15:53:42
  */
 
 import 'package:azlistview/azlistview.dart';
 import 'package:get/get.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
+
+import 'customer_detail_model.dart';
 
 class CustomerModelListWrapper {
   int totalCount;
@@ -26,7 +28,7 @@ class CustomerModelListWrapper {
     status1Count = json['status_1'];
     status2Count = json['status_2'];
     status3Count = json['status_3'];
-    list = JsonConvertKit.asList(json['list'])
+    list = JsonKit.asList(json['list'])
         .map((e) => CustomerModel.fromJson(e))
         .toList();
   }
@@ -39,7 +41,7 @@ extension CustomerModelListWrapperKit on CustomerModelListWrapper {
 
 class CustomerModel implements ISuspensionBean {
   String name;
-  int id;
+  String id;
 
   String headWord;
 
@@ -59,13 +61,18 @@ class CustomerModel implements ISuspensionBean {
   String avatar;
 
   int cartCount;
+
+  CustomerAddressModel address;
+
+  String get concreteAddress =>
+      "${address?.address?.address}${address?.detailAddress}";
   @override
   String getSuspensionTag() {
     return headWord;
   }
 
   CustomerModel.fromJson(Map json) {
-    id = json['id'];
+    id = "${json['id']}";
     name = json['client_name'];
     headWord = json['head_word'];
     tel = json['client_mobile'];
@@ -74,6 +81,7 @@ class CustomerModel implements ISuspensionBean {
     wx = json['client_wx'];
     enterTime = json['enter_time'];
     intentionProduct = json['good_category'];
+    address = CustomerAddressModel.fromJsom(json);
   }
 
   Map toJson() => {"id": id, "name": name};

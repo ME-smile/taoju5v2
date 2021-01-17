@@ -2,7 +2,7 @@
  * @Description: 选择器
  * @Author: iamsmiling
  * @Date: 2021-01-07 21:18:35
- * @LastEditTime: 2021-01-11 13:41:39
+ * @LastEditTime: 2021-01-13 15:44:24
  */
 import 'package:flutter/material.dart';
 import 'package:taojuwu/app/res/x_icons.dart';
@@ -16,6 +16,8 @@ class XSelectorTextField<T> extends StatefulWidget {
   final StringifyCallback<T> onStringify;
   final FutureCallback<T> onFuture;
   final Function(T value) onValueChange;
+  final Widget divider;
+  final double height;
   const XSelectorTextField(
       {Key key,
       @required this.label,
@@ -24,7 +26,12 @@ class XSelectorTextField<T> extends StatefulWidget {
       this.contentTextTextDirection = TextDirection.rtl,
       this.hintText = "请选择",
       this.onStringify,
-      this.onValueChange})
+      this.onValueChange,
+      this.height,
+      this.divider = const Divider(
+        height: .5,
+        thickness: .5,
+      )})
       : super(key: key);
 
   @override
@@ -59,34 +66,49 @@ class _XSelectorTextFieldState<T> extends State<XSelectorTextField<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Container(
-        child: Row(
-          children: [
-            widget.label,
-            Expanded(
-              flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+    return Container(
+      alignment: Alignment.center,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          GestureDetector(
+            onTap: _onTap,
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: TextFormField(
-                      readOnly: true,
-                      onTap: _onTap,
-                      textAlign: TextAlign.end,
-                      textDirection: widget.contentTextTextDirection,
-                      decoration:
-                          InputDecoration(hintText: _value ?? widget.hintText),
-                    ),
+                  Row(
+                    children: [
+                      widget.label,
+                      Expanded(
+                        flex: 2,
+                        child: TextFormField(
+                          readOnly: true,
+                          onTap: _onTap,
+                          textAlign: TextAlign.end,
+                          textAlignVertical: TextAlignVertical.top,
+                          textDirection: widget.contentTextTextDirection,
+                          decoration: InputDecoration(
+                            hintText: _value ?? widget.hintText,
+                            contentPadding: EdgeInsets.all(0),
+                            border: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      Icon(XIcons.next)
+                    ],
                   ),
-                  Icon(XIcons.next)
+                  widget.divider
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

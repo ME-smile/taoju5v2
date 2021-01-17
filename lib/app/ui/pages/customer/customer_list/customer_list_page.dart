@@ -2,7 +2,7 @@
  * @Description: 客户列表页
  * @Author: iamsmiling
  * @Date: 2020-12-21 17:18:59
- * @LastEditTime: 2021-01-09 21:49:18
+ * @LastEditTime: 2021-01-16 19:39:54
  */
 
 import 'package:azlistview/azlistview.dart';
@@ -17,14 +17,12 @@ import 'package:taojuwu/app/res/x_icons.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/customer/customer_list/customer_list_controller.dart';
 import 'package:taojuwu/app/ui/pages/home/customer_provider_controller.dart';
+import 'package:taojuwu/app/ui/pages/order/commit_order/commit_order_controller.dart';
 import 'package:taojuwu/app/ui/pages/search/search_controller.dart';
 import 'package:taojuwu/app/ui/widgets/base/x_loadstate_builder.dart';
 
 class CustomerListPage extends StatelessWidget {
   const CustomerListPage({Key key}) : super(key: key);
-
-  ///[ifChooseCustomer]是否为选择客户
-  bool get ifChooseCustomer => Get.previousRoute == AppRoutes.customerEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,7 @@ class CustomerListPage extends StatelessWidget {
                               icon: Image.asset(AppConfig.assetImagePrefixPath +
                                   "customer_add.png"),
                               onPressed: () =>
-                                  Get.toNamed(AppRoutes.customerEdit))
+                                  Get.toNamed(AppRoutes.customerEdit + "/0"))
                         ],
                         expandedHeight: 276,
                         flexibleSpace: FlexibleSpaceBar(
@@ -120,16 +118,18 @@ class CustomerListPage extends StatelessWidget {
                       itemBuilder: (BuildContext context, int i) {
                         return GestureDetector(
                           onTap: () {
-                            if (!ifChooseCustomer) {
+                            if (!(Get.arguments ?? false)) {
                               Get.toNamed(
                                   AppRoutes.customerDetail + "/${list[i].id}");
                               return;
                             }
                             Get.find<CustomerProviderController>().customer =
                                 list[i];
-                            return Get.until((route) =>
-                                RegExp(AppRoutes.productDetail)
-                                    .hasMatch(Get.currentRoute));
+                            return Get.until((route) => Get.currentRoute
+                                .contains(
+                                    (Get.isRegistered<CommitOrderController>()
+                                        ? AppRoutes.commitOrder
+                                        : AppRoutes.productDetail)));
                           },
                           child: Container(
                             alignment: Alignment.centerLeft,

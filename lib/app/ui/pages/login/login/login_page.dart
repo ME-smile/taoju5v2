@@ -2,12 +2,16 @@
  * @Description: 登录
  * @Author: iamsmiling
  * @Date: 2020-12-28 16:07:58
- * @LastEditTime: 2020-12-29 09:50:40
+ * @LastEditTime: 2021-01-12 13:56:17
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taojuwu/app/res/x_colors.dart';
+import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/ui/pages/login/login/login_controller.dart';
 import 'package:taojuwu/app/ui/widgets/bloc/x_sms_button.dart';
+
+import 'widget/loge_indicator.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -15,46 +19,53 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("登录"),
-      ),
+      backgroundColor: XColors.primaryColor,
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: GetBuilder<LoginController>(
           builder: (_) {
             return Column(
               children: [
-                Text("登录方式指示器"),
-                GetBuilder<LoginController>(
-                  id: "mode",
-                  builder: (_) {
-                    return Row(
-                      children: [
-                        Row(
-                          children: [
-                            Text("密码登录"),
-                            Checkbox(
-                                value: _.loginMode == LoginMode.password,
-                                onChanged: (bool flag) {
-                                  _.loginMode = LoginMode.password;
-                                  _.update(["mode"]);
-                                }),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text("验证码登录"),
-                            Checkbox(
-                                value: _.loginMode == LoginMode.sms,
-                                onChanged: (bool flag) {
-                                  _.loginMode = LoginMode.sms;
-                                  _.update(["mode"]);
-                                }),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
+                Text(
+                  "欢迎来到淘居屋",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: XColors.titleColor,
+                      fontSize: XDimens.sp48),
                 ),
+                LoginIndicator(),
+                // GetBuilder<LoginController>(
+                //   id: "mode",
+                //   builder: (_) {
+                //     return Row(
+                //       children: [
+                //         Row(
+                //           children: [
+                //             Text("密码登录"),
+                //             Checkbox(
+                //                 value: _.loginMode == LoginMode.password,
+                //                 onChanged: (bool flag) {
+                //                   _.loginMode = LoginMode.password;
+                //                   _.update(["mode"]);
+                //                 }),
+                //           ],
+                //         ),
+
+                //         Row(
+                //           children: [
+                //             Text("验证码登录"),
+                //             Checkbox(
+                //                 value: _.loginMode == LoginMode.sms,
+                //                 onChanged: (bool flag) {
+                //                   _.loginMode = LoginMode.sms;
+                //                   _.update(["mode"]);
+                //                 }),
+                //           ],
+                //         ),
+                //       ],
+                //     );
+                //   },
+                // ),
                 Form(
                   autovalidateMode: AutovalidateMode.always,
                   child: Column(

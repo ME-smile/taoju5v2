@@ -2,7 +2,7 @@
  * @Description:商品列表 网格模式视图
  * @Author: iamsmiling
  * @Date: 2021-01-08 13:17:59
- * @LastEditTime: 2021-01-08 18:00:07
+ * @LastEditTime: 2021-01-15 15:44:44
  */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,14 +44,14 @@ class ProductGridModeSection extends StatelessWidget {
           shrinkWrap: shrinkWrap,
           itemCount: productList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.84,
-              crossAxisSpacing: 24,
-              mainAxisSpacing: 24),
+            crossAxisCount: 2,
+            childAspectRatio: 0.84,
+            // crossAxisSpacing: 24,
+          ),
           itemBuilder: (BuildContext context, int i) {
             ProductModel e = productList[i];
             return GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.productDetailV2 + "/${e.id}",
+              onTap: () => Get.toNamed(AppRoutes.productDetail + "/${e.id}",
                   arguments: e.productType),
               child: Container(
                 child: Column(

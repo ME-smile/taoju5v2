@@ -2,10 +2,10 @@
  * @Description: 商品列表模型
  * @Author: iamsmiling
  * @Date: 2020-12-22 13:47:52
- * @LastEditTime: 2021-01-08 10:48:27
+ * @LastEditTime: 2021-01-13 13:47:10
  */
 import 'package:taojuwu/app/domain/model/order/order_status.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 import 'order_type.dart';
 
@@ -13,10 +13,10 @@ class OrderModelListWrapper {
   List<OrderModel> orderModelList;
   List<int> countList;
   OrderModelListWrapper.fromJson(Map json) {
-    orderModelList = JsonConvertKit.asList(json["data"])
+    orderModelList = JsonKit.asList(json["data"])
         .map((e) => OrderModel.fromJson(e))
         .toList();
-    countList = JsonConvertKit.asList((json["statusNum"].values)).cast<int>();
+    countList = JsonKit.asList((json["statusNum"].values)).cast<int>();
   }
 }
 
@@ -58,12 +58,12 @@ class OrderModel {
     typeCode = json['order_type'];
     statusCode = json['order_status'];
     receiverName = json['receiver_name'];
-    createTime = JsonConvertKit.formatDateTime(
-        JsonConvertKit.getDateTimeFromMillseconds(json['create_time']),
+    createTime = JsonKit.formatDateTime(
+        JsonKit.getDateTimeFromMillseconds(json['create_time']),
         format: "yyyy-MM-dd HH:mm:ss");
-    prepayment = JsonConvertKit.asDouble(json['order_earnest_money']);
-    balance = JsonConvertKit.asDouble(json['tail_money']);
-    estimationAmount = JsonConvertKit.asDouble(json['order_estimated_price']);
+    prepayment = JsonKit.asDouble(json['order_earnest_money']);
+    balance = JsonKit.asDouble(json['tail_money']);
+    estimationAmount = JsonKit.asDouble(json['order_estimated_price']);
     windowCount = "${json['order_window_num']}";
     customerId = json['client_id'];
     measureTime = json['measure_time'];
@@ -71,7 +71,7 @@ class OrderModel {
     typeName = json['order_type_name'];
     customerName = json['client_name'];
 
-    productList = JsonConvertKit.asList(json["order_item_list"])
+    productList = JsonKit.asList(json["order_item_list"])
         .map((e) => OrderProductModel.fromJsom(e))
         .toList();
   }
@@ -101,21 +101,19 @@ class OrderProductModel {
   OrderProductModel.fromJsom(Map json) {
     name = json['goods_name'];
     statusName = json['status_name'];
-    price = JsonConvertKit.asDouble(json['price']);
-    room = JsonConvertKit.getValueInComplexMap(json, ["wc_attr", "1", "name"])
-        .toString();
-    hasSelected = JsonConvertKit.asBool(json['is_selected_goods']);
-    image = JsonConvertKit.asWebUrl(JsonConvertKit.getValueInComplexMap(
-        json, ["picture", "pic_cover_small"]));
-    List list = JsonConvertKit.asList(
-        JsonConvertKit.getValueInComplexMap(json, ["wc_attr", "9"]));
-    width = JsonConvertKit.isNullOrBlank(list)
+    price = JsonKit.asDouble(json['price']);
+    room =
+        JsonKit.getValueInComplexMap(json, ["wc_attr", "1", "name"]).toString();
+    hasSelected = JsonKit.asBool(json['is_selected_goods']);
+    image = JsonKit.asWebUrl(
+        JsonKit.getValueInComplexMap(json, ["picture", "pic_cover_small"]));
+    List list =
+        JsonKit.asList(JsonKit.getValueInComplexMap(json, ["wc_attr", "9"]));
+    width = JsonKit.isNullOrBlank(list)
         ? 0.0
-        : JsonConvertKit.asDouble(
-            JsonConvertKit.getValueByKey(list?.first, "value"));
-    height = JsonConvertKit.isNullOrBlank(list)
+        : JsonKit.asDouble(JsonKit.getValueByKey(list?.first, "value"));
+    height = JsonKit.isNullOrBlank(list)
         ? 0.0
-        : JsonConvertKit.asDouble(
-            JsonConvertKit.getValueByKey(list?.first, "value"));
+        : JsonKit.asDouble(JsonKit.getValueByKey(list?.last, "value"));
   }
 }

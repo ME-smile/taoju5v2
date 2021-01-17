@@ -2,7 +2,7 @@
  * @Description: 商品排序模型
  * @Author: iamsmiling
  * @Date: 2020-12-25 15:17:11
- * @LastEditTime: 2020-12-25 15:45:39
+ * @LastEditTime: 2021-01-15 14:24:30
  */
 
 import 'package:flutter/foundation.dart';
@@ -19,5 +19,5 @@ class ProductSortModel {
       this.sort = "",
       this.order = "",
       this.isChecked = false});
-  Map toJson() => {"sort": sort, "order": order};
+  Map get params => {"sort": sort, "order": order};
 }

@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   rxdart: ^0.24.1
   flutter_screenutil: ^4.0.0-beta2
   dio: ^3.0.10
@@ -50,7 +52,10 @@ dependencies:
   json_annotation: ^3.1.1
   webview_flutter: ^1.0.7
   flutter_app_upgrade: ^1.1.0
-  install_plugin: ^2.0.1
+  flutter_staggered_grid_view: ^0.3.3
+  # install_plugin: ^2.0.1
+  fair: ^0.2.0
+  flare_flutter: ^2.0.6
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
@@ -58,6 +63,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.4.0
+  fair_compiler: ^0.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -74,6 +81,8 @@ flutter:
     - assets/images/2.0x/
     - assets/images/3.0x/
     - assets/images/curtain/
+    - assets/bundles/lib_home_page.fair.json
+    - assets/flrs/
   fonts:
   # - family: Quicksand
   #   fonts:

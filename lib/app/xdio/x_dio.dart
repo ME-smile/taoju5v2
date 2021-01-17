@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:taojuwu/app/config/net_config.dart';
 import 'package:taojuwu/app/storage/storage_manager.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 class XDio {
   // 私有构造函数
@@ -76,7 +76,7 @@ class BaseResponse {
   bool get isValid => code == 0;
 
   BaseResponse.fromJson(Map json) {
-    code = JsonConvertKit.asInt(json['code']);
+    code = JsonKit.asInt(json['code']);
     data = json['data'];
     message = json['message'];
   }

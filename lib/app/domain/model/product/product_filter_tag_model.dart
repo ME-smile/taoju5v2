@@ -5,12 +5,12 @@
  * @LastEditTime: 2021-01-06 09:49:48
  */
 import 'package:taojuwu/app/interface/i_xselectable.dart';
-import 'package:taojuwu/app/utils/json_convert_kit.dart';
+import 'package:taojuwu/app/utils/json_kit.dart';
 
 class ProductFilterTagModelListWrapper {
   List<ProductFilterTagModel> list;
   ProductFilterTagModelListWrapper.fromJson(var data) {
-    list = JsonConvertKit.asList(data)
+    list = JsonKit.asList(data)
         .map((e) => ProductFilterTagModel.fromJson(e))
         .toList()
         .cast<ProductFilterTagModel>();
@@ -28,9 +28,9 @@ class ProductFilterTagModel {
   ProductFilterTagModel.fromJson(Map json) {
     title = json["show_name"];
     key = json["filter_name"];
-    shouldRefresh = JsonConvertKit.asBool(json["is_refresh"]);
-    isMultiple = JsonConvertKit.asBool(json["is_multiple"]);
-    options = JsonConvertKit.asList(json["filter_value"])
+    shouldRefresh = JsonKit.asBool(json["is_refresh"]);
+    isMultiple = JsonKit.asBool(json["is_multiple"]);
+    options = JsonKit.asList(json["filter_value"])
         .map((e) => ProductFilterTagOptionModel.fromJson(e))
         .cast<ProductFilterTagOptionModel>()
         .toList();

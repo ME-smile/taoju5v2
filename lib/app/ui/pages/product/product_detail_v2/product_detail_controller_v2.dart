@@ -2,12 +2,13 @@
  * @Description: 商品详情控制器v2
  * @Author: iamsmiling
  * @Date: 2021-01-08 13:46:36
- * @LastEditTime: 2021-01-10 21:06:40
+ * @LastEditTime: 2021-01-12 15:14:34
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taojuwu/app/domain/model/product/design_product_model.dart';
+import 'package:taojuwu/app/domain/model/product/product_adapter_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_detail_model.dart';
 import 'package:taojuwu/app/domain/model/product/product_model.dart';
 import 'package:taojuwu/app/domain/repository/product/product_repository.dart';
@@ -48,6 +49,20 @@ class ProductDetailControllerV2 extends GetxController {
     }).catchError((err) {
       loadState = XLoadState.error;
     }).whenComplete(update);
+  }
+
+  ///模型适配转换
+  List<ProductAdapterModel> adapt() {
+    Map json = {
+      "id": product.id,
+      "name": product.name,
+      // "room": product.room.currentOptionName,
+      "price": product.price,
+      // "attrList": selectorController.attrList,
+      "description": "",
+      // "totalPrice": product.totalPrice
+    };
+    return [ProductAdapterModel.fromJson(json)];
   }
 
   @override

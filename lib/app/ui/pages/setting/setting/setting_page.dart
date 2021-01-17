@@ -2,10 +2,11 @@
  * @Description: 设置页面
  * @Author: iamsmiling
  * @Date: 2020-12-22 15:53:48
- * @LastEditTime: 2021-01-10 15:45:17
+ * @LastEditTime: 2021-01-12 10:39:31
  */
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:taojuwu/app/res/x_colors.dart';
 import 'package:taojuwu/app/res/x_dimens.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/setting/setting/setting_controller.dart';
@@ -52,7 +53,11 @@ class SettingPage extends StatelessWidget {
               label: "关于淘居屋",
               trailing: Text(_.versionCode),
             ),
-            TextButton(onPressed: _.logOut, child: Text("退出"))
+            Container(
+                margin: EdgeInsets.only(top: XDimens.gap16),
+                color: XColors.primaryColor,
+                width: Get.width,
+                child: TextButton(onPressed: _.logOut, child: Text("退出")))
           ],
         );
       }),

@@ -2,13 +2,12 @@
  * @Description: 客户详情
  * @Author: iamsmiling
  * @Date: 2020-12-21 17:29:00
- * @LastEditTime: 2021-01-08 09:22:15
+ * @LastEditTime: 2021-01-12 22:44:56
  */
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:taojuwu/app/domain/model/customer/customer_detail_model.dart';
 import 'package:taojuwu/app/routes/app_pages.dart';
 import 'package:taojuwu/app/ui/pages/customer/customer_detail/customer_detail_controller.dart';
 import 'package:taojuwu/app/ui/pages/customer/customer_detail/fragment/customer_detail_header.dart';
@@ -30,14 +29,8 @@ class CustomerDetailPage extends StatelessWidget {
               onPressed: () {
                 CustomerDetailController controller =
                     Get.find<CustomerDetailController>();
-                Get.toNamed(AppRoutes.customerEdit,
-                        arguments: controller.customer)
-                    .then((value) {
-                  if (value is CustomerDetailModel) {
-                    controller.customer = value;
-                    controller.update();
-                  }
-                });
+                Get.toNamed(AppRoutes.customerEdit + "/0",
+                    arguments: controller.customer);
               },
               child: Text("编辑"))
         ],

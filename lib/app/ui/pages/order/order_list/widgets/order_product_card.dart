@@ -2,7 +2,7 @@
  * @Description: 订单商品卡片
  * @Author: iamsmiling
  * @Date: 2021-01-04 15:46:09
- * @LastEditTime: 2021-01-08 10:55:28
+ * @LastEditTime: 2021-01-12 14:33:42
  */
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -320,7 +320,7 @@ class _MeasuredOrderCard extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    order.typeName,
+                                    product.name,
                                     style: TextStyle(
                                         fontSize: XDimens.sp28,
                                         color: XColors.textColor,

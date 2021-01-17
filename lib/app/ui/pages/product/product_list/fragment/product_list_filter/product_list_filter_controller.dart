@@ -2,7 +2,7 @@
  * @Description: 商品列表页过滤控制器
  * @Author: iamsmiling
  * @Date: 2020-12-25 16:21:54
- * @LastEditTime: 2021-01-06 13:08:13
+ * @LastEditTime: 2021-01-15 14:31:18
  */
 
 import 'package:get/get.dart';
@@ -21,7 +21,7 @@ class ProductListFilterController extends GetxController {
   Future refreshData({Map params, ProductFilterTagModel tag}) {
     loadState = XLoadState.idle;
     update();
-    print(params);
+
     return _repository.filterTag(params: params).then((value) {
       tagList = value.list;
 
@@ -93,11 +93,22 @@ class ProductListFilterController extends GetxController {
     update();
   }
 
+  Map get filterParams {
+    if (GetUtils.isNull(tagList)) return {};
+    Map map = {};
+    tagList.forEach((tag) {
+      map.addAll({
+        tag.key: tag.options.where((e) => e.isChecked).map((e) => e.id).toList()
+      });
+    });
+    return map;
+  }
+
   ///确认
   void confirm() {
     Get.find<ProductListParentController>()
         .productListController
-        .refreshData()
+        .refreshData(params: filterParams)
         .then((value) {
       Get.back();
     });

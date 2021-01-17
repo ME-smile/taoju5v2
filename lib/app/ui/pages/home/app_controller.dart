@@ -2,14 +2,14 @@
  * @Description: app控制器
  * @Author: iamsmiling
  * @Date: 2021-01-11 17:32:04
- * @LastEditTime: 2021-01-11 18:01:09
+ * @LastEditTime: 2021-01-15 18:02:34
  */
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app_upgrade/flutter_app_upgrade.dart';
 import 'package:get/get.dart';
-import 'package:install_plugin/install_plugin.dart';
+// import 'package:install_plugin/install_plugin.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:taojuwu/app/domain/model/app/app_info_model.dart';
@@ -58,9 +58,9 @@ class AppController extends GetxController {
     try {
       String path = await _getApkPath();
 
-      InstallPlugin.installApk(path + apkName, 'com.buyi.taojuwu')
-          .then((_) {})
-          .catchError((err) => err);
+      // InstallPlugin.installApk(path + apkName, 'com.buyi.taojuwu')
+      //     .then((_) {})
+      //     .catchError((err) => err);
     } on Error catch (_) {}
   }
 

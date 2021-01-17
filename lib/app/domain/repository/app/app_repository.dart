@@ -2,7 +2,7 @@
  * @Description: app
  * @Author: iamsmiling
  * @Date: 2021-01-11 17:27:01
- * @LastEditTime: 2021-01-11 17:30:05
+ * @LastEditTime: 2021-01-12 10:02:28
  */
 
 import 'package:taojuwu/app/domain/model/app/app_info_model.dart';
@@ -17,7 +17,7 @@ class AppRepository {
         .appInfo("/api/Config/getAppUpgradeInfo", params: params)
         .then((BaseResponse response) {
       if (response.isValid) return AppInfoModel.fromJson(response.data);
-      throw Future.error(response.message);
+      return Future.error(response.message);
     }).catchError((err) {
       throw err;
     });

@@ -2,7 +2,7 @@
  * @Description: 选择客户的按钮
  * @Author: iamsmiling
  * @Date: 2020-12-29 13:12:01
- * @LastEditTime: 2020-12-30 17:03:18
+ * @LastEditTime: 2021-01-12 17:42:22
  */
 
 import 'package:flutter/material.dart';
@@ -18,7 +18,9 @@ class XCustomerChooseButton extends StatelessWidget {
     return GetBuilder<CustomerProviderController>(builder: (_) {
       return TextButton.icon(
           key: ValueKey(_?.name),
-          onPressed: () => Get.toNamed(AppRoutes.customerEdit),
+
+          ///传递一个bool参数 表示是否展示 “选择已有客户” 的按钮
+          onPressed: () => Get.toNamed(AppRoutes.customerEdit + "/1"),
           icon: Image.asset(
               AppConfig.assetImagePrefixPath + "customer_badge.png"),
           label: Text(_?.name));
